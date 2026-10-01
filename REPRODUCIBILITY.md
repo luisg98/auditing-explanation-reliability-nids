@@ -36,8 +36,10 @@ manual content and linkability review remains required. The current data-rights
 review covers only the derived-results package described in
 `docs/data-access.md`.
 
-This candidate has no public release tag or DOI. Before publication, approve
-each manifest file and resolve all remaining release gates in
-`PUBLICATION_MANIFEST.json`. Then create the immutable repository version and
-update CITATION.cff and the manuscript's artifact reference to that actual
-version. `--release` refuses to proceed while any gate is false.
+The repository is public but has no immutable release tag or DOI and is not
+approved for archival citation. Before creating a versioned release, approve
+each manifest file and resolve all remaining gates in
+`PUBLICATION_MANIFEST.json`, including the known historical record linkage. Then
+create the immutable repository version and update CITATION.cff and the
+manuscript's artifact reference to that version. `--release` refuses to
+proceed while any gate is false.

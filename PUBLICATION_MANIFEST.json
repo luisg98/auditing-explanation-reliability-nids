@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "publication_status": "private_candidate_not_publicly_released",
+  "publication_status": "public_working_candidate_not_approved_for_archival_release",
   "release_authorized": false,
   "target_repository": "https://github.com/luisg98/auditing-explanation-reliability-nids",
   "candidate_branch": "main",
@@ -66,22 +66,22 @@
     },
     {
       "path": "MANIFEST.md",
-      "bytes": 1653,
-      "sha256": "11ede54f598a755836d5ddc45ba2847f7447ed5cda25254089a5b0981c8441f0",
+      "bytes": 2002,
+      "sha256": "52b6be5352160386c066b076809b49c8d6a9f757c8657358cc28581604c41474",
       "status": "proposed_not_approved",
       "kind": "code_document_or_paper"
     },
     {
       "path": "README.md",
-      "bytes": 3526,
-      "sha256": "9003378e22923a4b2ae45f194772a790f78d54f1d26630612906d79b16bad9e1",
+      "bytes": 4237,
+      "sha256": "81ca979c38d16994828756eec88a8dc9c608c0564adf831b6978721755f6621a",
       "status": "proposed_not_approved",
       "kind": "code_document_or_paper"
     },
     {
       "path": "REPRODUCIBILITY.md",
-      "bytes": 2166,
-      "sha256": "0c86f31404ae85d2d4cf2b8bc46b37989133b04829b174e453c08a4b86ff5b77",
+      "bytes": 2274,
+      "sha256": "b34092aab180eff5632504342cfa8fb62cf1c2ceb47974f74e98f7fd2eaf160a",
       "status": "proposed_not_approved",
       "kind": "code_document_or_paper"
     },
@@ -2179,5 +2179,16 @@
     "software_license": "MIT for original project software in src/, scripts/, tests/, configs/ only",
     "manuscript_figures_and_results": "no additional license grant; author/contributor and publisher scope remains to be confirmed"
   },
-  "history_treatment": "Remote main now points to an unrelated root commit; old release and tag were removed. The repository remains private because GitHub still resolves the old commit by SHA; original workspace history remains intact."
+  "history_treatment": "The public main branch is a two-commit snapshot with no ancestry to the old commit; the old release and tag were removed. GitHub still resolves the old commit and historical per-flow table by SHA without authentication. Purging cached views or copies is unconfirmed; original workspace history remains intact.",
+  "residual_linkability_finding": {
+    "status": "review_unresolved",
+    "current_file": "results/source_records/statistics/repeatability_metric_fixed.csv.gz",
+    "historical_file": "tables/leakage_free_tabular/epistemic_audit/cross_probe_per_flow.csv.gz",
+    "historical_commit": "7e926902a86de043c46ec95185b19c0c1e3ad3e3",
+    "exact_matching_rows": 4246,
+    "current_random_ids_matched": 436,
+    "matches_with_single_historical_locator": 3689,
+    "current_ids_uniquely_resolved_after_repeated_match_intersection": 2,
+    "interpretation": "Links current result rows to historical public records; it does not establish identification of people. Random flow_id values are not anonymization."
+  }
 }
