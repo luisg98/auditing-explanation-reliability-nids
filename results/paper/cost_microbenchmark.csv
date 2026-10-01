@@ -1,0 +1,6 @@
+method,measured_arm,n,median_ms,p95_ms,min_ms,max_ms,unit,batch_size,background_rows
+gradient_x_input,gradient_x_input,8,4.4225830351933,4.57090347772459,3.6819999804720003,4.5737909385934,one explanation of one input,1,
+integrated_gradients,integrated_gradients,8,238.4539790218696,253.63022891688158,233.54266700334838,256.9235829869285,one explanation of one input,1,
+occlusion,occlusion,8,166.28052096348256,185.1245606085285,163.3156250463798,191.3958749501034,one explanation of one input,1,
+lime,lime_resampled_background,6,171.84510396327818,174.51006191549823,160.2047089254483,174.6136659057811,one explanation of one input,4096,
+shap,shap_sparse10,6,988.3246244862676,1087.8886979771778,899.5135829318315,1101.14549996797,one explanation of one input,4096,1.0

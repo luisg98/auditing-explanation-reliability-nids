@@ -1,0 +1,19 @@
+\begin{abstract}
+Post-hoc explanations can support audits of neural intrusion detectors, but
+generating an attribution does not establish that it is reliable evidence.
+We examine reproducibility, functional response and outcome dependence on
+corrected CICIDS2017 and NF-ToN-IoT-V2 binary classification, using MLP and
+1D-CNN models, five training seeds and five explainers. We separate stochastic
+recomputation, numerical sensitivity and deterministic controls, reporting
+identifiable coverage alongside rank and top-10 agreement. Functional response
+compares attribution-guided deletion/insertion with displacement-matched random
+controls on a common panel under three replacement operators. LIME rank
+correlations range from .766 to .879; high conditional agreement for other
+methods can conceal non-identifiable top-10 selections. For ToN-IoT, IG insertion
+effects change from positive under median replacement to negative under
+conditional Gaussian replacement in both architectures. An exploratory
+correct/error analysis is limited to three deterministic methods and
+explicitly reports scarce false-negative support. The results support
+condition-specific auditing of frozen models, not an operator-independent
+ranking of explainers, validated alert triage, or a guarantee of IDS safety.
+\end{abstract}

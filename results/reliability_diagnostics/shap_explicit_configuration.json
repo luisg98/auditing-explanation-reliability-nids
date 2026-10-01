@@ -1,0 +1,25 @@
+{
+  "status": "recorded_new_diagnostic_not_historical_reconstruction",
+  "scope": "two CICIDS binary MLP seed-42 inputs; diagnostic only",
+  "shap_version": "0.51.0",
+  "l1_reg": "num_features(10)",
+  "nsamples": 102400,
+  "link": "identity",
+  "background_physical_rows": 1,
+  "background_distinct_rows": 1,
+  "dtype": "float32 model inputs",
+  "prediction_batch_size": 4096,
+  "full_environment": "versions are not historical evidence; see requirements-lock.txt for the reproduction environment",
+  "implementation": "scripts/revision_xai_checks.py",
+  "historical_inference": "No historical run is assigned this version or l1_reg from this observation.",
+  "official_default_change": "https://shap.readthedocs.io/en/stable/generated/shap.KernelExplainer.html",
+  "future_main_configuration": {
+    "shap_version": "0.51.0",
+    "l1_reg": "num_features(10)",
+    "link": "identity",
+    "nsamples": 102400,
+    "background_physical_rows": 100,
+    "environment_lock": "requirements-lock.txt",
+    "executed": false
+  }
+}

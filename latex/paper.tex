@@ -1,0 +1,37 @@
+% IEEE conference manuscript in US Letter format, matching the supplied
+% conference-template-letter.docx.
+\documentclass[conference,letterpaper]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{cite}
+\usepackage{url}
+
+\interdisplaylinepenalty=2500
+
+\title{Trust in Neural Intrusion Detection:\\Auditing Post-hoc Explanation Reliability}
+
+% ISDFS uses single-blind review, so author metadata remains visible.
+\input{authors}
+
+\begin{document}
+\maketitle
+
+\input{sections/abstract}
+\begin{IEEEkeywords}
+explainable artificial intelligence, intrusion detection, feature attribution,
+explanation evaluation, neural networks
+\end{IEEEkeywords}
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/methods}
+\input{sections/results}
+\input{sections/discussion_conclusions}
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

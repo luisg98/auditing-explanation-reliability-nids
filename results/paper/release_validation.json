@@ -1,0 +1,1806 @@
+{
+  "status": "verified_local_release",
+  "checks": [
+    {
+      "check": "all reconstruction checks",
+      "passed": true,
+      "detail": "1915"
+    },
+    {
+      "check": "no new training or attributions",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "5000 new bootstrap draws",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_42/gradient_x_input/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_42/integrated_gradients/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_42/lime/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_42/occlusion/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_42/shap/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_43/gradient_x_input/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_43/integrated_gradients/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_43/lime/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_43/occlusion/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_43/shap/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_44/gradient_x_input/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_44/integrated_gradients/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_44/lime/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_44/occlusion/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_44/shap/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_45/gradient_x_input/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_45/integrated_gradients/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_45/lime/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_45/occlusion/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_45/shap/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_46/gradient_x_input/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_46/integrated_gradients/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_46/lime/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_46/occlusion/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/cnn/seed_46/shap/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_42/gradient_x_input/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_42/integrated_gradients/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_42/lime/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_42/occlusion/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_42/shap/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_43/gradient_x_input/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_43/integrated_gradients/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_43/lime/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_43/occlusion/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_43/shap/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_44/gradient_x_input/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_44/integrated_gradients/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_44/lime/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_44/occlusion/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_44/shap/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_45/gradient_x_input/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_45/integrated_gradients/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_45/lime/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_45/occlusion/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_45/shap/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_46/gradient_x_input/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_46/integrated_gradients/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_46/lime/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_46/occlusion/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/cicids2017_binary/mlp/seed_46/shap/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_42/gradient_x_input/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_42/integrated_gradients/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_42/lime/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_42/occlusion/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_42/shap/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_43/gradient_x_input/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_43/integrated_gradients/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_43/lime/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_43/occlusion/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_43/shap/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_44/gradient_x_input/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_44/integrated_gradients/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_44/lime/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_44/occlusion/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_44/shap/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_45/gradient_x_input/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_45/integrated_gradients/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_45/lime/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_45/occlusion/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_45/shap/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_46/gradient_x_input/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_46/integrated_gradients/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_46/lime/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_46/occlusion/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/cnn/seed_46/shap/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_42/gradient_x_input/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_42/integrated_gradients/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_42/lime/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_42/occlusion/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_42/shap/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_43/gradient_x_input/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_43/integrated_gradients/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_43/lime/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_43/occlusion/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_43/shap/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_44/gradient_x_input/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_44/integrated_gradients/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_44/lime/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_44/occlusion/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_44/shap/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_45/gradient_x_input/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_45/integrated_gradients/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_45/lime/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_45/occlusion/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_45/shap/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_46/gradient_x_input/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_46/integrated_gradients/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_46/lime/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_46/occlusion/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operators/ton_iot_binary/mlp/seed_46/shap/operator_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/cnn/seed_42/gradient_x_input/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/cnn/seed_42/integrated_gradients/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/cnn/seed_42/occlusion/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/cnn/seed_43/gradient_x_input/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/cnn/seed_43/integrated_gradients/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/cnn/seed_43/occlusion/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/cnn/seed_44/gradient_x_input/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/cnn/seed_44/integrated_gradients/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/cnn/seed_44/occlusion/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/cnn/seed_45/gradient_x_input/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/cnn/seed_45/integrated_gradients/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/cnn/seed_45/occlusion/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/cnn/seed_46/gradient_x_input/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/cnn/seed_46/integrated_gradients/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/cnn/seed_46/occlusion/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/mlp/seed_42/gradient_x_input/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/mlp/seed_42/integrated_gradients/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/mlp/seed_42/occlusion/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/mlp/seed_43/gradient_x_input/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/mlp/seed_43/integrated_gradients/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/mlp/seed_43/occlusion/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/mlp/seed_44/gradient_x_input/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/mlp/seed_44/integrated_gradients/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/mlp/seed_44/occlusion/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/mlp/seed_45/gradient_x_input/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/mlp/seed_45/integrated_gradients/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/mlp/seed_45/occlusion/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/mlp/seed_46/gradient_x_input/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/mlp/seed_46/integrated_gradients/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/cicids2017_binary/mlp/seed_46/occlusion/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/cnn/seed_42/gradient_x_input/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/cnn/seed_42/integrated_gradients/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/cnn/seed_42/occlusion/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/cnn/seed_43/gradient_x_input/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/cnn/seed_43/integrated_gradients/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/cnn/seed_43/occlusion/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/cnn/seed_44/gradient_x_input/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/cnn/seed_44/integrated_gradients/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/cnn/seed_44/occlusion/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/cnn/seed_45/gradient_x_input/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/cnn/seed_45/integrated_gradients/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/cnn/seed_45/occlusion/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/cnn/seed_46/gradient_x_input/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/cnn/seed_46/integrated_gradients/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/cnn/seed_46/occlusion/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/mlp/seed_42/gradient_x_input/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/mlp/seed_42/integrated_gradients/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/mlp/seed_42/occlusion/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/mlp/seed_43/gradient_x_input/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/mlp/seed_43/integrated_gradients/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/mlp/seed_43/occlusion/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/mlp/seed_44/gradient_x_input/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/mlp/seed_44/integrated_gradients/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/mlp/seed_44/occlusion/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/mlp/seed_45/gradient_x_input/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/mlp/seed_45/integrated_gradients/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/mlp/seed_45/occlusion/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/mlp/seed_46/gradient_x_input/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/mlp/seed_46/integrated_gradients/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/leakage_free_tabular/audit_extensions/study4_outcome_reliability/functional/ton_iot_binary/mlp/seed_46/occlusion/functional_aopc_per_flow.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/paper/predictive_by_seed.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/source_records/data/panel_counts.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/source_records/data/predictive_by_seed.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/source_records/data/split_class_counts.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/source_records/statistics/fp_tp_matched_summary.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/source_records/statistics/fp_tp_matching_balance.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/source_records/statistics/outcome_score_distributions.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/source_records/statistics/repeatability_metric_fixed.csv.gz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/source_records/xai/ig_completeness_summary.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash results/source_records/xai/pilot_main_budget/pilot_times.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash tables/leakage_free_tabular/audit_extensions/study2_dependency_perturbations/operator_summary.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash tables/leakage_free_tabular/audit_extensions/study4_outcome_reliability/outcome_functional_summary.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash tables/leakage_free_tabular/epistemic_audit/repeatability_summary.csv",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash scripts/build_isdfs_binary.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "input hash scripts/revision_statistics.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "current agreed RQ is verbatim",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "three tables and two figures",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "main paper does not depend on supplement",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "record-based release explained",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "reproduction command documented",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "no old global denominators",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "predictive text cicids2017_binary/cnn/f1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "predictive text cicids2017_binary/cnn/fpr",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "threshold text cicids2017_binary/cnn",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "predictive text cicids2017_binary/mlp/f1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "predictive text cicids2017_binary/mlp/fpr",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "threshold text cicids2017_binary/mlp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "predictive text ton_iot_binary/cnn/f1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "predictive text ton_iot_binary/cnn/fpr",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "threshold text ton_iot_binary/cnn",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "predictive text ton_iot_binary/mlp/f1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "predictive text ton_iot_binary/mlp/fpr",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "threshold text ton_iot_binary/mlp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table cicids2017_binary/cnn/integrated_gradients/spearman",
+      "passed": true,
+      "detail": "0.9988 [0.9985, 0.9991]"
+    },
+    {
+      "check": "RQ1 coverage 0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table cicids2017_binary/cnn/integrated_gradients/jaccard_10",
+      "passed": true,
+      "detail": "0.964 [0.958, 0.970]"
+    },
+    {
+      "check": "RQ1 coverage 1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table cicids2017_binary/cnn/lime/spearman",
+      "passed": true,
+      "detail": "0.792 [0.775, 0.808]"
+    },
+    {
+      "check": "RQ1 coverage 2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table cicids2017_binary/cnn/lime/jaccard_10",
+      "passed": true,
+      "detail": "0.608 [0.543, 0.660]"
+    },
+    {
+      "check": "RQ1 coverage 3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table cicids2017_binary/cnn/occlusion/spearman",
+      "passed": true,
+      "detail": "1.000 [1.000, 1.000]"
+    },
+    {
+      "check": "RQ1 coverage 4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table cicids2017_binary/cnn/occlusion/jaccard_10",
+      "passed": true,
+      "detail": "1.000 [1.000, 1.000]"
+    },
+    {
+      "check": "RQ1 coverage 5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table cicids2017_binary/cnn/shap/spearman",
+      "passed": true,
+      "detail": "0.975 [0.956, 0.990]"
+    },
+    {
+      "check": "RQ1 coverage 6",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table cicids2017_binary/cnn/shap/jaccard_10",
+      "passed": true,
+      "detail": "0.943 [0.905, 0.978]"
+    },
+    {
+      "check": "RQ1 coverage 7",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table cicids2017_binary/mlp/integrated_gradients/spearman",
+      "passed": true,
+      "detail": "0.9997 [0.9996, 0.9997]"
+    },
+    {
+      "check": "RQ1 coverage 8",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table cicids2017_binary/mlp/integrated_gradients/jaccard_10",
+      "passed": true,
+      "detail": "0.989 [0.984, 0.993]"
+    },
+    {
+      "check": "RQ1 coverage 9",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table cicids2017_binary/mlp/lime/spearman",
+      "passed": true,
+      "detail": "0.879 [0.870, 0.889]"
+    },
+    {
+      "check": "RQ1 coverage 10",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table cicids2017_binary/mlp/lime/jaccard_10",
+      "passed": true,
+      "detail": "0.634 [0.614, 0.653]"
+    },
+    {
+      "check": "RQ1 coverage 11",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table cicids2017_binary/mlp/occlusion/spearman",
+      "passed": true,
+      "detail": "1.000 [1.000, 1.000]"
+    },
+    {
+      "check": "RQ1 coverage 12",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table cicids2017_binary/mlp/occlusion/jaccard_10",
+      "passed": true,
+      "detail": "1.000 [1.000, 1.000]"
+    },
+    {
+      "check": "RQ1 coverage 13",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table cicids2017_binary/mlp/shap/spearman",
+      "passed": true,
+      "detail": "0.980 [0.956, 0.995]"
+    },
+    {
+      "check": "RQ1 coverage 14",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table cicids2017_binary/mlp/shap/jaccard_10",
+      "passed": true,
+      "detail": "0.959 [0.924, 0.988]"
+    },
+    {
+      "check": "RQ1 coverage 15",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table ton_iot_binary/cnn/integrated_gradients/spearman",
+      "passed": true,
+      "detail": "0.9995 [0.9992, 0.9997]"
+    },
+    {
+      "check": "RQ1 coverage 16",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table ton_iot_binary/cnn/integrated_gradients/jaccard_10",
+      "passed": true,
+      "detail": "0.983 [0.976, 0.989]"
+    },
+    {
+      "check": "RQ1 coverage 17",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table ton_iot_binary/cnn/lime/spearman",
+      "passed": true,
+      "detail": "0.766 [0.739, 0.791]"
+    },
+    {
+      "check": "RQ1 coverage 18",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table ton_iot_binary/cnn/lime/jaccard_10",
+      "passed": true,
+      "detail": "0.638 [0.601, 0.680]"
+    },
+    {
+      "check": "RQ1 coverage 19",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table ton_iot_binary/cnn/occlusion/spearman",
+      "passed": true,
+      "detail": "1.000 [1.000, 1.000]"
+    },
+    {
+      "check": "RQ1 coverage 20",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table ton_iot_binary/cnn/occlusion/jaccard_10",
+      "passed": true,
+      "detail": "1.000 [1.000, 1.000]"
+    },
+    {
+      "check": "RQ1 coverage 21",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table ton_iot_binary/cnn/shap/spearman",
+      "passed": true,
+      "detail": "0.999 [0.994, 1.000]"
+    },
+    {
+      "check": "RQ1 coverage 22",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table ton_iot_binary/cnn/shap/jaccard_10",
+      "passed": true,
+      "detail": "0.996 [0.980, 1.000]"
+    },
+    {
+      "check": "RQ1 coverage 23",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table ton_iot_binary/mlp/integrated_gradients/spearman",
+      "passed": true,
+      "detail": "0.9996 [0.9995, 0.9997]"
+    },
+    {
+      "check": "RQ1 coverage 24",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table ton_iot_binary/mlp/integrated_gradients/jaccard_10",
+      "passed": true,
+      "detail": "0.986 [0.982, 0.990]"
+    },
+    {
+      "check": "RQ1 coverage 25",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table ton_iot_binary/mlp/lime/spearman",
+      "passed": true,
+      "detail": "0.767 [0.749, 0.783]"
+    },
+    {
+      "check": "RQ1 coverage 26",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table ton_iot_binary/mlp/lime/jaccard_10",
+      "passed": true,
+      "detail": "0.670 [0.643, 0.699]"
+    },
+    {
+      "check": "RQ1 coverage 27",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table ton_iot_binary/mlp/occlusion/spearman",
+      "passed": true,
+      "detail": "1.000 [1.000, 1.000]"
+    },
+    {
+      "check": "RQ1 coverage 28",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table ton_iot_binary/mlp/occlusion/jaccard_10",
+      "passed": true,
+      "detail": "1.000 [1.000, 1.000]"
+    },
+    {
+      "check": "RQ1 coverage 29",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table ton_iot_binary/mlp/shap/spearman",
+      "passed": true,
+      "detail": "0.998 [0.992, 1.000]"
+    },
+    {
+      "check": "RQ1 coverage 30",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "RQ1 table ton_iot_binary/mlp/shap/jaccard_10",
+      "passed": true,
+      "detail": "0.985 [0.945, 1.000]"
+    },
+    {
+      "check": "RQ1 coverage 31",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "IG insertion cnn/conditional_gaussian_mean/estimate",
+      "passed": true,
+      "detail": "-.079"
+    },
+    {
+      "check": "IG insertion cnn/conditional_gaussian_mean/ci_low",
+      "passed": true,
+      "detail": "-.144"
+    },
+    {
+      "check": "IG insertion cnn/conditional_gaussian_mean/ci_high",
+      "passed": true,
+      "detail": "-.020"
+    },
+    {
+      "check": "IG insertion cnn/training_median/estimate",
+      "passed": true,
+      "detail": ".073"
+    },
+    {
+      "check": "IG insertion cnn/training_median/ci_low",
+      "passed": true,
+      "detail": ".044"
+    },
+    {
+      "check": "IG insertion cnn/training_median/ci_high",
+      "passed": true,
+      "detail": ".108"
+    },
+    {
+      "check": "IG insertion mlp/conditional_gaussian_mean/estimate",
+      "passed": true,
+      "detail": "-.148"
+    },
+    {
+      "check": "IG insertion mlp/conditional_gaussian_mean/ci_low",
+      "passed": true,
+      "detail": "-.233"
+    },
+    {
+      "check": "IG insertion mlp/conditional_gaussian_mean/ci_high",
+      "passed": true,
+      "detail": "-.071"
+    },
+    {
+      "check": "IG insertion mlp/training_median/estimate",
+      "passed": true,
+      "detail": ".074"
+    },
+    {
+      "check": "IG insertion mlp/training_median/ci_low",
+      "passed": true,
+      "detail": ".045"
+    },
+    {
+      "check": "IG insertion mlp/training_median/ci_high",
+      "passed": true,
+      "detail": ".106"
+    },
+    {
+      "check": "paired contrast text cicids2017_binary/cnn/deletion/estimate",
+      "passed": true,
+      "detail": ".089"
+    },
+    {
+      "check": "paired contrast text cicids2017_binary/cnn/deletion/ci_low",
+      "passed": true,
+      "detail": ".025"
+    },
+    {
+      "check": "paired contrast text cicids2017_binary/cnn/deletion/ci_high",
+      "passed": true,
+      "detail": ".159"
+    },
+    {
+      "check": "paired contrast text ton_iot_binary/cnn/deletion/estimate",
+      "passed": true,
+      "detail": ".006"
+    },
+    {
+      "check": "paired contrast text ton_iot_binary/cnn/deletion/ci_low",
+      "passed": true,
+      "detail": "-.084"
+    },
+    {
+      "check": "paired contrast text ton_iot_binary/cnn/deletion/ci_high",
+      "passed": true,
+      "detail": ".098"
+    },
+    {
+      "check": "paired contrast text ton_iot_binary/cnn/insertion/estimate",
+      "passed": true,
+      "detail": "-.152"
+    },
+    {
+      "check": "paired contrast text ton_iot_binary/cnn/insertion/ci_low",
+      "passed": true,
+      "detail": "-.210"
+    },
+    {
+      "check": "paired contrast text ton_iot_binary/cnn/insertion/ci_high",
+      "passed": true,
+      "detail": "-.095"
+    },
+    {
+      "check": "paired contrast text ton_iot_binary/mlp/deletion/estimate",
+      "passed": true,
+      "detail": "-.003"
+    },
+    {
+      "check": "paired contrast text ton_iot_binary/mlp/deletion/ci_low",
+      "passed": true,
+      "detail": "-.080"
+    },
+    {
+      "check": "paired contrast text ton_iot_binary/mlp/deletion/ci_high",
+      "passed": true,
+      "detail": ".075"
+    },
+    {
+      "check": "paired contrast text ton_iot_binary/mlp/insertion/estimate",
+      "passed": true,
+      "detail": "-.222"
+    },
+    {
+      "check": "paired contrast text ton_iot_binary/mlp/insertion/ci_low",
+      "passed": true,
+      "detail": "-.318"
+    },
+    {
+      "check": "paired contrast text ton_iot_binary/mlp/insertion/ci_high",
+      "passed": true,
+      "detail": "-.131"
+    },
+    {
+      "check": "CICIDS FN descriptive only",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "binary outcome denominator",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "traceability is 328 estimates + 4 gaps",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "source paths for each reported estimate",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "measured cost gradient_x_input/median_ms",
+      "passed": true,
+      "detail": "4.4"
+    },
+    {
+      "check": "measured cost gradient_x_input/min_ms",
+      "passed": true,
+      "detail": "3.7"
+    },
+    {
+      "check": "measured cost gradient_x_input/max_ms",
+      "passed": true,
+      "detail": "4.6"
+    },
+    {
+      "check": "measured cost integrated_gradients/median_ms",
+      "passed": true,
+      "detail": "238.5"
+    },
+    {
+      "check": "measured cost integrated_gradients/min_ms",
+      "passed": true,
+      "detail": "233.5"
+    },
+    {
+      "check": "measured cost integrated_gradients/max_ms",
+      "passed": true,
+      "detail": "256.9"
+    },
+    {
+      "check": "measured cost occlusion/median_ms",
+      "passed": true,
+      "detail": "166.3"
+    },
+    {
+      "check": "measured cost occlusion/min_ms",
+      "passed": true,
+      "detail": "163.3"
+    },
+    {
+      "check": "measured cost occlusion/max_ms",
+      "passed": true,
+      "detail": "191.4"
+    },
+    {
+      "check": "measured cost lime/median_ms",
+      "passed": true,
+      "detail": "171.8"
+    },
+    {
+      "check": "measured cost lime/min_ms",
+      "passed": true,
+      "detail": "160.2"
+    },
+    {
+      "check": "measured cost lime/max_ms",
+      "passed": true,
+      "detail": "174.6"
+    },
+    {
+      "check": "measured cost shap/median_ms",
+      "passed": true,
+      "detail": "988.3"
+    },
+    {
+      "check": "measured cost shap/min_ms",
+      "passed": true,
+      "detail": "899.5"
+    },
+    {
+      "check": "measured cost shap/max_ms",
+      "passed": true,
+      "detail": "1,101.1"
+    },
+    {
+      "check": "microbenchmark units explicit",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "all 100 source-level baseline rechecks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "boundary audit for 100 task/model/method/fraction cells",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "batched IG verified on 320 cached accounts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "historical SHAP provenance not inferred from current environment",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final-resolution IG text cnn/estimate",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final-resolution IG text cnn/ci_low",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final-resolution IG text cnn/ci_high",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final-resolution IG text mlp/estimate",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final-resolution IG text mlp/ci_low",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "final-resolution IG text mlp/ci_high",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "IG contrast persists in both models and all tie orders",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "all 320 IG cases meet final tolerance",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "reported tie-order change shap",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "reported tie-order change occlusion",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "exactly six pages including references",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "US Letter",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "both figures before references",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "authors visible",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "no placeholders",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "no overflowing boxes or unresolved references",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "all PDF fonts embedded",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "pages": 6,
+  "external_submission": false,
+  "public_artifact": false,
+  "files": [
+    {
+      "path": "latex/paper.tex",
+      "sha256": "bfac73559a315a7e40d2e6c5c3575a2be22441d2c19806164b8c830b0c6f1f01"
+    },
+    {
+      "path": "latex/authors.tex",
+      "sha256": "7adb6db76689111f9c3d26259d127c15086ed351c638675add4a5b1ef807cefa"
+    },
+    {
+      "path": "latex/research_question.txt",
+      "sha256": "12196146f59785be1501938ac6724f201c0e7537514006648e25e13bbbb4da3b"
+    },
+    {
+      "path": "latex/references.bib",
+      "sha256": "c6f91628b1dee961cfe9e6d902cccd8ce846f87ece9663580fb029385ab355de"
+    },
+    {
+      "path": "latex/paper.pdf",
+      "sha256": "47ba730046b89aabefa9981762df21f4149c06365095ad3c59e0cab4524f07c6"
+    },
+    {
+      "path": "latex/sections/abstract.tex",
+      "sha256": "6d1cf66e75b6d71f6f61fc5e8f0fe5811738c353b5219ca7b94225717547bd02"
+    },
+    {
+      "path": "latex/sections/introduction.tex",
+      "sha256": "8b2e6cea8e76352a8182b4596f57c7766f89ca1b94c2f21f627162173d529d3d"
+    },
+    {
+      "path": "latex/sections/related_work.tex",
+      "sha256": "6da246824aa171e23482389ffb60e8f33607ab995d8929ecff925eb68e5626f4"
+    },
+    {
+      "path": "latex/sections/methods.tex",
+      "sha256": "69bb89f3f8c0c909dcbc5b719c400ce0aaf7b7b32c5dc4d75a39d53850bcc3c7"
+    },
+    {
+      "path": "latex/sections/results.tex",
+      "sha256": "ad8faa1aed17f91073430640ecdb30bc08df58fc0e56ca223af13c1ac3fec2a9"
+    },
+    {
+      "path": "latex/sections/discussion_conclusions.tex",
+      "sha256": "8cd993f36b1a9b53519a484ffd34e73234c8098616242b593121126c8a71cba2"
+    },
+    {
+      "path": "latex/assets/binary_cost.tex",
+      "sha256": "229384fc7595b928c2374db87cbf147f50114d9ab57d5304773102010c7ef426"
+    },
+    {
+      "path": "latex/assets/binary_operators.pdf",
+      "sha256": "c0e70a3bcad079044ed1cfb2e4a98a13b31e883931947f95b5b219b1ea5a8d6c"
+    },
+    {
+      "path": "latex/assets/binary_outcomes.pdf",
+      "sha256": "4690582023318a047d71e61b7cd979611dcebeb6c02b8f4451a803f7069ab9b3"
+    },
+    {
+      "path": "latex/assets/binary_repeatability.tex",
+      "sha256": "45f96a64802a5744e5960a04a9fd35c8e49174d333ce504da002601e9db30e19"
+    },
+    {
+      "path": "latex/assets/binary_review.tex",
+      "sha256": "240b717946763de67d55eb203e0f3bfcc9437c456ca4aeeb2e0ff46c100608e0"
+    },
+    {
+      "path": "results/paper/cost_microbenchmark.csv",
+      "sha256": "21d1fdc3b450891214aaf7fec8070e69962b116352bae54dcbce0f015a4d0225"
+    },
+    {
+      "path": "results/paper/fp_tp_matched_summary.csv",
+      "sha256": "bca75507a3c8d6b409eb57a73a9bb80d3df4a67b66d880be97607da5811d6017"
+    },
+    {
+      "path": "results/paper/fp_tp_matching_balance.csv",
+      "sha256": "b528da08cdf8b3d665d7f0ea40a2bd0b0dcf97c927446963cbcdfe1e5b91eb4d"
+    },
+    {
+      "path": "results/paper/ig_completeness.csv",
+      "sha256": "a7a2da015ccb9d11e5ed95c017e14d6293b2b708edb7ed952e6341af2bbad34a"
+    },
+    {
+      "path": "results/paper/outcome_score_distributions.csv",
+      "sha256": "ec6c73af8faae6f9e6c36e2a7080a666bd88d7e144c76b17e62c254cbc19231b"
+    },
+    {
+      "path": "results/paper/panel_counts.csv",
+      "sha256": "24453fab1770802027d2d86f2aa01e13a0373b71e0a6f19caaab785f7fdbba13"
+    },
+    {
+      "path": "results/paper/predictive_by_seed.csv",
+      "sha256": "9d3c1c8f118af2a5067e97c1dd72f82981467908e3709ae49c3774832901cb35"
+    },
+    {
+      "path": "results/paper/predictive_context.csv",
+      "sha256": "c8f5517f266ed066d95e7937a1cb5f7d00baf1ae5f378f96787e485b5efef62c"
+    },
+    {
+      "path": "results/paper/rq1_repeatability.csv",
+      "sha256": "cd980734136f5159ffd3d691e0f6a34a420314cb8beaaa655ba375971992f4cd"
+    },
+    {
+      "path": "results/paper/rq2_operator_effects.csv",
+      "sha256": "10945f531632a5ee03f1be1f5daddb76a9de6072c107b8d6e28b02fcf83ee143"
+    },
+    {
+      "path": "results/paper/rq2_paired_operator_contrasts.csv",
+      "sha256": "3fab9df4aded3dd87cf39290ee612c2a31bbe5727a811cb6b0aef569f19e2a17"
+    },
+    {
+      "path": "results/paper/rq3_outcome_effects.csv",
+      "sha256": "e127f17c9221881fb4809555e110daff1b7109a277e4bc167fcfe2f9ee1b4a10"
+    },
+    {
+      "path": "results/paper/rq3_support.csv",
+      "sha256": "42c4239faf29aab8daef887a22c0bbd67b9131ef750cf2568b8436ba10e76ea3"
+    },
+    {
+      "path": "results/paper/seed_estimates.csv",
+      "sha256": "fc1873513243751d66018747c339aab8a637d593677469f1339713471f388dea"
+    },
+    {
+      "path": "results/paper/split_class_counts.csv",
+      "sha256": "cb1c4ee58377bf8c69d8f423a318fc6872e1ab12e02ed3e6ab32c85b7ff3ee9e"
+    },
+    {
+      "path": "results/paper/traceability.csv",
+      "sha256": "c94a041b943d1ce589a68eac3e527be3a448a9f5c366794d03852658288b3f40"
+    },
+    {
+      "path": "results/paper/manifest.json",
+      "sha256": "92d2a3124a100d07ea434001cf0e5e5092f2aea578c4109e6b122c5d56fbd609"
+    },
+    {
+      "path": "results/reliability_diagnostics/rq2_sensitivity_per_flow.csv.gz",
+      "sha256": "6f5125bb0a3413846db5259b422249f16827a2ab6a2fc5099213e5f8ccc6b746"
+    },
+    {
+      "path": "results/reliability_diagnostics/rq2_boundaries.csv",
+      "sha256": "69633ee6aa0049318caa51a81010979d79f44a5b28fd020b666022608a7c5f24"
+    },
+    {
+      "path": "results/reliability_diagnostics/ig_rq2_residuals.csv",
+      "sha256": "d861f03d0b01f45dc76d34d1c072a775b14ce2d71f75cbff062944c6ffa3b02e"
+    },
+    {
+      "path": "results/reliability_diagnostics/baseline_reconstruction_checks.csv",
+      "sha256": "44df8e62ee1c99953b359c91e2d767af717f30977cf5270d9b037cdcb2cbb7c1"
+    },
+    {
+      "path": "REPRODUCIBILITY.md",
+      "sha256": "6a69a3afca7ec91af2a7bfa2cf93802eeb54151076827a18119b7bea3448f190"
+    },
+    {
+      "path": "ARTIFACT_PROVENANCE.md",
+      "sha256": "dc6b7abe0692a1af15c36ca5621d6973b9c751d2834b7ba3afcbc69155c89fea"
+    }
+  ]
+}

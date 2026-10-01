@@ -1,0 +1,13 @@
+task_id,split,class_id,class_name,rows,prevalence
+cicids2017_binary,train,0,BENIGN,174998,0.5000342884573623
+cicids2017_binary,train,1,ATTACK,174974,0.4999657115426377
+cicids2017_binary,val,0,BENIGN,34605,0.482400501847076
+cicids2017_binary,val,1,ATTACK,37130,0.5175994981529239
+cicids2017_binary,test,0,BENIGN,34257,0.4800319488817891
+cicids2017_binary,test,1,ATTACK,37107,0.5199680511182109
+ton_iot_binary,train,0,BENIGN,175000,0.5
+ton_iot_binary,train,1,ATTACK,175000,0.5
+ton_iot_binary,val,0,BENIGN,37500,0.5000133336888983
+ton_iot_binary,val,1,ATTACK,37498,0.4999866663111016
+ton_iot_binary,test,0,BENIGN,37499,0.5
+ton_iot_binary,test,1,ATTACK,37499,0.5

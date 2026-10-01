@@ -1,0 +1,36 @@
+\section{Introduction}
+
+A neural intrusion detection system (IDS) can perform well on held-out traffic
+without establishing that its feature attributions are reliable evidence for
+auditing individual decisions. An analyst inspecting a flagged flow needs to
+know what an explanation measures, whether it can be reproduced, and whether
+the attributed features affect the model under an explicit intervention.
+Trust motivates these questions; neither predictive accuracy nor the presence
+of an explanation answers them. Benchmark performance also need not transfer
+to the conditions in which an IDS is deployed~\cite{sommer2010outside}.
+
+Post-hoc methods produce different accounts of a fitted model. A local
+surrogate coefficient, a path-integrated gradient and a replacement effect
+are not interchangeable measurements. Repeating an account can establish
+reproducibility without establishing that its ordering predicts a functional
+response. Conversely, a deletion experiment depends on what replaces the
+deleted coordinates~\cite{rong2022road,wang2024deletion}. An audit must therefore
+separate properties of the explanation from choices made by its evaluator.
+
+We ask: \emph{To what extent do post-hoc explanations provide reliable evidence
+for auditing neural intrusion detection decisions?} We operationalise reliability
+through three questions, not a composite trust score:
+\textbf{RQ1}: how reproducible are attributions under repeated explanation
+sampling or changes in numerical integration, for a fixed model and target?
+\textbf{RQ2}: how do attribution-guided interventions compare with matched
+random controls, and how does this response depend on the replacement operator?
+\textbf{RQ3}: how does the response vary across correct and incorrect decisions,
+including false positives and false negatives?
+
+The study reorganises existing experiments on two binary traffic benchmarks,
+two neural architectures, five training seeds and five explainers. Its
+contribution is a condition-resolved audit: metric-specific coverage accompanies
+reproducibility; paired functional effects are evaluated under three distinct
+operators; and an exploratory outcome analysis states its restricted method
+coverage and sample support. We evaluate evidence about frozen models, not
+analyst trust, incident reduction, or a criterion for declaring an IDS safe.

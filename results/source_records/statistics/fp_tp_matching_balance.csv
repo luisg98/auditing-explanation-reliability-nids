@@ -1,0 +1,21 @@
+task_id,model,seed,n_fp,n_tp,pairs,fp_retention,tp_retention,score_smd_before,score_smd_after,caliper_pooled_sd,target,margin_control
+cicids2017_binary,cnn,42,128,128,1,0.0078125,0.0078125,-1.9542240024493593,0.00016726932675557383,0.2,attack probability; FP-minus-TP,omitted: margin = attack score - fixed threshold within predicted-attack stratum
+cicids2017_binary,cnn,43,128,128,0,0.0,0.0,-1.8924362734887092,,0.2,attack probability; FP-minus-TP,omitted: margin = attack score - fixed threshold within predicted-attack stratum
+cicids2017_binary,cnn,44,128,128,1,0.0078125,0.0078125,-1.9664823601393169,0.018648808497851273,0.2,attack probability; FP-minus-TP,omitted: margin = attack score - fixed threshold within predicted-attack stratum
+cicids2017_binary,cnn,45,128,128,0,0.0,0.0,-1.9808756528448674,,0.2,attack probability; FP-minus-TP,omitted: margin = attack score - fixed threshold within predicted-attack stratum
+cicids2017_binary,cnn,46,128,128,1,0.0078125,0.0078125,-1.969338378205997,7.173409472557346e-07,0.2,attack probability; FP-minus-TP,omitted: margin = attack score - fixed threshold within predicted-attack stratum
+cicids2017_binary,mlp,42,128,128,4,0.03125,0.03125,-1.9426375706160228,0.05545517566687872,0.2,attack probability; FP-minus-TP,omitted: margin = attack score - fixed threshold within predicted-attack stratum
+cicids2017_binary,mlp,43,128,128,1,0.0078125,0.0078125,-1.947626335878354,0.008696786155308682,0.2,attack probability; FP-minus-TP,omitted: margin = attack score - fixed threshold within predicted-attack stratum
+cicids2017_binary,mlp,44,128,128,2,0.015625,0.015625,-1.950811726572509,0.009644008938576079,0.2,attack probability; FP-minus-TP,omitted: margin = attack score - fixed threshold within predicted-attack stratum
+cicids2017_binary,mlp,45,128,128,1,0.0078125,0.0078125,-1.9502761966406879,8.936562358111445e-06,0.2,attack probability; FP-minus-TP,omitted: margin = attack score - fixed threshold within predicted-attack stratum
+cicids2017_binary,mlp,46,128,128,2,0.015625,0.015625,-1.9281341639269467,0.026718157070423378,0.2,attack probability; FP-minus-TP,omitted: margin = attack score - fixed threshold within predicted-attack stratum
+ton_iot_binary,cnn,42,128,128,23,0.1796875,0.1796875,-1.5865613501285092,-0.011224285265800705,0.2,attack probability; FP-minus-TP,omitted: margin = attack score - fixed threshold within predicted-attack stratum
+ton_iot_binary,cnn,43,128,128,28,0.21875,0.21875,-1.563935326532746,-0.014130355165746835,0.2,attack probability; FP-minus-TP,omitted: margin = attack score - fixed threshold within predicted-attack stratum
+ton_iot_binary,cnn,44,128,128,36,0.28125,0.28125,-1.4489352870622527,-0.06836393865305619,0.2,attack probability; FP-minus-TP,omitted: margin = attack score - fixed threshold within predicted-attack stratum
+ton_iot_binary,cnn,45,128,128,28,0.21875,0.21875,-1.5210221022779495,-0.018719596010620846,0.2,attack probability; FP-minus-TP,omitted: margin = attack score - fixed threshold within predicted-attack stratum
+ton_iot_binary,cnn,46,128,128,23,0.1796875,0.1796875,-1.6172554501859893,0.0017411254767706857,0.2,attack probability; FP-minus-TP,omitted: margin = attack score - fixed threshold within predicted-attack stratum
+ton_iot_binary,mlp,42,128,128,22,0.171875,0.171875,-1.591863005067462,-0.03780497354305938,0.2,attack probability; FP-minus-TP,omitted: margin = attack score - fixed threshold within predicted-attack stratum
+ton_iot_binary,mlp,43,128,128,34,0.265625,0.265625,-1.474661024560857,-0.07997340354869656,0.2,attack probability; FP-minus-TP,omitted: margin = attack score - fixed threshold within predicted-attack stratum
+ton_iot_binary,mlp,44,128,128,18,0.140625,0.140625,-1.6522727059954345,-0.015501232891081143,0.2,attack probability; FP-minus-TP,omitted: margin = attack score - fixed threshold within predicted-attack stratum
+ton_iot_binary,mlp,45,128,128,26,0.203125,0.203125,-1.4267539935239015,-0.001984561597971081,0.2,attack probability; FP-minus-TP,omitted: margin = attack score - fixed threshold within predicted-attack stratum
+ton_iot_binary,mlp,46,128,128,29,0.2265625,0.2265625,-1.4793060695096105,-0.06277731618346663,0.2,attack probability; FP-minus-TP,omitted: margin = attack score - fixed threshold within predicted-attack stratum

@@ -1,0 +1,110 @@
+pipeline_id: leakage_free_tabular_training_v2
+frozen_date: 2026-08-09
+
+paths:
+  processed_root: results/leakage_free_tabular/processed
+  results_root: results/leakage_free_tabular
+  tables_root: tables/leakage_free_tabular
+
+tasks:
+  cicids2017_binary:
+    dataset: cicids2017
+    task: binary
+  cicids2017_multiclass:
+    dataset: cicids2017
+    task: multiclass
+  ton_iot_binary:
+    dataset: ton_iot
+    task: binary
+
+# The split is produced once by the leakage-control stage and reused verbatim
+# for hyperparameter selection and every final seed.
+split_policy:
+  fixed_across_model_seeds: true
+  require_all_classes_each_split: true
+  require_zero_raw_overlap: true
+  require_zero_exact_tensor_overlap: true
+  require_zero_rounded5_tensor_overlap: true
+
+models: [mlp, cnn]
+selection_seed: 1701
+final_seeds: [42, 43, 44, 45, 46]
+
+selection_policy:
+  reads_test_split: false
+  binary_primary_metric: validation_pr_auc
+  binary_max_fpr: 0.05
+  binary_threshold_tiebreak: [minimum_fnr, maximum_f2, maximum_threshold]
+  multiclass_primary_metric: validation_supported_macro_f1
+  multiclass_min_validation_support: 20
+  multiclass_eligibility_partition: validation
+  multiclass_tiebreak: [validation_supported_balanced_accuracy, validation_supported_weighted_f1, validation_supported_log_loss]
+
+training:
+  class_weight_max: 10.0
+  selection:
+    epochs: 35
+    early_stopping_patience: 5
+    early_stopping_min_delta: 0.0005
+    early_stopping_monitor: val_loss
+    early_stopping_mode: min
+    verbose: 2
+  final:
+    epochs: 50
+    early_stopping_patience: 7
+    early_stopping_min_delta: 0.0005
+    early_stopping_monitor: val_loss
+    early_stopping_mode: min
+    verbose: 2
+  reduce_lr_on_plateau:
+    enabled: true
+    factor: 0.5
+    patience: 3
+    min_delta: 0.0005
+    min_lr: 1.0e-6
+
+# Four bounded, explicitly enumerated candidates per task/model.  There is no
+# adaptive search and no candidate is evaluated on the test partition.
+grids:
+  cicids2017_binary:
+    mlp:
+      - {candidate_id: mlp_b1, hidden_units: [128, 64], dropout: 0.10, learning_rate: 0.001, batch_size: 512, class_weight: true}
+      - {candidate_id: mlp_b2, hidden_units: [256, 128], dropout: 0.10, learning_rate: 0.001, batch_size: 512, class_weight: true}
+      - {candidate_id: mlp_b3, hidden_units: [256, 128, 64], dropout: 0.20, learning_rate: 0.001, batch_size: 512, class_weight: true}
+      - {candidate_id: mlp_b4, hidden_units: [128, 64, 32], dropout: 0.20, learning_rate: 0.0005, batch_size: 512, class_weight: true}
+    cnn:
+      - {candidate_id: cnn_b1, filters: [32, 64], kernel_size: 3, dense_units: 64, dropout: 0.10, learning_rate: 0.001, batch_size: 512, class_weight: true}
+      - {candidate_id: cnn_b2, filters: [64, 128], kernel_size: 3, dense_units: 128, dropout: 0.10, learning_rate: 0.001, batch_size: 512, class_weight: true}
+      - {candidate_id: cnn_b3, filters: [64, 128, 256], kernel_size: 3, dense_units: 128, dropout: 0.20, learning_rate: 0.001, batch_size: 512, class_weight: true}
+      - {candidate_id: cnn_b4, filters: [64, 128], kernel_size: 5, dense_units: 128, dropout: 0.20, learning_rate: 0.0005, batch_size: 512, class_weight: true}
+  cicids2017_multiclass:
+    mlp:
+      - {candidate_id: mlp_m1, hidden_units: [128, 64], dropout: 0.10, learning_rate: 0.001, batch_size: 256, class_weight: true}
+      - {candidate_id: mlp_m2, hidden_units: [256, 128], dropout: 0.10, learning_rate: 0.001, batch_size: 256, class_weight: true}
+      - {candidate_id: mlp_m3, hidden_units: [256, 128, 64], dropout: 0.20, learning_rate: 0.001, batch_size: 256, class_weight: true}
+      - {candidate_id: mlp_m4, hidden_units: [128, 64, 32], dropout: 0.20, learning_rate: 0.0005, batch_size: 256, class_weight: true}
+    cnn:
+      - {candidate_id: cnn_m1, filters: [32, 64], kernel_size: 3, dense_units: 64, dropout: 0.10, learning_rate: 0.001, batch_size: 256, class_weight: true}
+      - {candidate_id: cnn_m2, filters: [64, 128], kernel_size: 3, dense_units: 128, dropout: 0.10, learning_rate: 0.001, batch_size: 256, class_weight: true}
+      - {candidate_id: cnn_m3, filters: [64, 128, 256], kernel_size: 3, dense_units: 128, dropout: 0.20, learning_rate: 0.001, batch_size: 256, class_weight: true}
+      - {candidate_id: cnn_m4, filters: [64, 128], kernel_size: 5, dense_units: 128, dropout: 0.20, learning_rate: 0.0005, batch_size: 256, class_weight: true}
+  # Deduplicated from pipeline_v5's 5 independent per-seed selection winners
+  # (results/v1/v5/model_selection/ton_iot_binary/{mlp,cnn}/seed_*/selected_hyperparameters.json).
+  # No new hyperparameter search: these are the exact architectures already
+  # accepted for ToN-IoT, re-registered as v2's frozen candidate grid so the
+  # shared-split selection stage picks among known-good configurations rather
+  # than guessing new ones. See amendment
+  # ton_iot_retrained_via_v2_pipeline_20260829 in leakage_free_epistemic_audit.yaml.
+  ton_iot_binary:
+    mlp:
+      - {candidate_id: mlp_t1, hidden_units: [256, 128], dropout: 0.10, learning_rate: 0.001, batch_size: 512, class_weight: true}
+      - {candidate_id: mlp_t2, hidden_units: [256, 128], dropout: 0.10, learning_rate: 0.001, batch_size: 256, class_weight: true}
+      - {candidate_id: mlp_t3, hidden_units: [256, 128], dropout: 0.20, learning_rate: 0.001, batch_size: 256, class_weight: true}
+    cnn:
+      - {candidate_id: cnn_t1, filters: 32, kernel_size: 3, dense_units: 64, dropout: 0.10, learning_rate: 0.001, batch_size: 512, class_weight: true}
+      - {candidate_id: cnn_t2, filters: 32, kernel_size: 3, dense_units: 64, dropout: 0.20, learning_rate: 0.001, batch_size: 256, class_weight: true}
+      - {candidate_id: cnn_t3, filters: 64, kernel_size: 3, dense_units: 64, dropout: 0.10, learning_rate: 0.001, batch_size: 512, class_weight: true}
+      - {candidate_id: cnn_t4, filters: 64, kernel_size: 3, dense_units: 64, dropout: 0.10, learning_rate: 0.001, batch_size: 256, class_weight: true}
+
+calibration:
+  bins: 15

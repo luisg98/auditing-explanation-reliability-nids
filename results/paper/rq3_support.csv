@@ -1,0 +1,17 @@
+task_id,model,error_type,n_unique_sources,n_seed_flow_cells,n_seeds,n_rows
+cicids2017_binary,cnn,false_negative,8,14,5,14
+cicids2017_binary,cnn,false_positive,572,640,5,640
+cicids2017_binary,cnn,true_negative,630,640,5,640
+cicids2017_binary,cnn,true_positive,636,640,5,640
+cicids2017_binary,mlp,false_negative,13,43,5,43
+cicids2017_binary,mlp,false_positive,575,640,5,640
+cicids2017_binary,mlp,true_negative,638,640,5,640
+cicids2017_binary,mlp,true_positive,637,640,5,640
+ton_iot_binary,cnn,false_negative,303,640,5,640
+ton_iot_binary,cnn,false_positive,567,640,5,640
+ton_iot_binary,cnn,true_negative,635,640,5,640
+ton_iot_binary,cnn,true_positive,628,640,5,640
+ton_iot_binary,mlp,false_negative,190,640,5,640
+ton_iot_binary,mlp,false_positive,548,640,5,640
+ton_iot_binary,mlp,true_negative,636,640,5,640
+ton_iot_binary,mlp,true_positive,638,640,5,640

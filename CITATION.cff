@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "Please cite the associated paper and the exact repository release used."
+title: "Trust in Neural Intrusion Detection: Auditing Post-hoc Explanation Reliability"
+type: software
+license: MIT # Original software only; see LICENSE and docs/data-access.md for scope.
+repository-code: "https://github.com/luisg98/auditing-explanation-reliability-nids"
+authors:
+  - family-names: "Gonçalves"
+    given-names: "Luís"
+  - family-names: "Silva"
+    given-names: "Joaquim P."
+    orcid: "https://orcid.org/0000-0002-0138-2456"
+  - family-names: "Teixeira"
+    given-names: "Paulo"
+    orcid: "https://orcid.org/0000-0002-7596-9735"
+  - family-names: "Gonçalves"
+    given-names: "Joaquim"
+    orcid: "https://orcid.org/0000-0003-2219-1816"

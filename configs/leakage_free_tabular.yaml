@@ -1,0 +1,105 @@
+pipeline_version: leakage_free_tabular_v2
+
+dataset:
+  name: cicids2017
+  source_path: data/processed/source_parquet/cicids2017
+  glob_pattern: "*.parquet"
+  label_column: Label
+  drop_columns:
+    - id
+    - Flow ID
+    - Source IP
+    - Src IP
+    - Destination IP
+    - Dst IP
+    - Source Port
+    - Src Port
+    - Destination Port
+    - Dst Port
+    - Timestamp
+    - Attempted Category
+  fixed_abs_clip: 1000000000000.0
+  benign_labels: [BENIGN, Benign, benign]
+  # Source: CICIDS2017_improved (Liu et al., CNS2022 corrected release).
+  # "X - Attempted" flows (attack attempted, no payload delivered) are folded
+  # into their base attack family per the dataset authors' own guidance not to
+  # treat them as a separate class. "Infiltration - Portscan" (the internal
+  # reconnaissance phase of the Thursday infiltration scenario) is mapped to
+  # Infiltration, not PortScan, since it is part of that attack's lifecycle.
+  attack_family_map:
+    BENIGN: BENIGN
+    Benign: BENIGN
+    Botnet: Bot
+    Botnet - Attempted: Bot
+    DDoS: DDoS
+    DoS GoldenEye: DoS
+    DoS GoldenEye - Attempted: DoS
+    DoS Hulk: DoS
+    DoS Hulk - Attempted: DoS
+    DoS Slowhttptest: DoS
+    DoS Slowhttptest - Attempted: DoS
+    DoS Slowloris: DoS
+    DoS Slowloris - Attempted: DoS
+    FTP-Patator: BruteForce
+    FTP-Patator - Attempted: BruteForce
+    SSH-Patator: BruteForce
+    SSH-Patator - Attempted: BruteForce
+    Heartbleed: Heartbleed
+    Infiltration: Infiltration
+    Infiltration - Attempted: Infiltration
+    Infiltration - Portscan: Infiltration
+    Portscan: PortScan
+    Web Attack - Brute Force: WebAttack
+    Web Attack - Brute Force - Attempted: WebAttack
+    Web Attack - SQL Injection: WebAttack
+    Web Attack - SQL Injection - Attempted: WebAttack
+    Web Attack - XSS: WebAttack
+    Web Attack - XSS - Attempted: WebAttack
+
+tasks:
+  - task_id: cicids2017_binary
+    task: binary
+    class_names: [BENIGN, ATTACK]
+    max_rows_per_class: 250000
+  - task_id: cicids2017_multiclass
+    task: multiclass
+    class_names:
+      - BENIGN
+      - Bot
+      - BruteForce
+      - DDoS
+      - DoS
+      - Heartbleed
+      - Infiltration
+      - PortScan
+      - WebAttack
+    max_rows_per_class: 8000
+
+split:
+  train_size: 0.70
+  validation_size: 0.15
+  test_size: 0.15
+  seed: 42
+  group_key: exact_clipped_float64_feature_sha256
+  drop_label_conflicting_fingerprint_groups: true
+  max_absolute_split_fraction_deviation: 0.03
+
+preprocessing:
+  imputer_strategy: median
+  variance_threshold: 0.0
+  drop_exact_duplicate_features: true
+  duplicate_feature_policy: train_only_keep_first_and_record_group
+  scaler: standard
+  output_dtype: float32
+
+representation_guard:
+  enabled: true
+  precedence: [train, validation, test]
+  exact_float32: true
+  rounded_float32_decimals: 5
+  filtering_uses_labels: false
+  require_all_classes_after_filtering: true
+
+outputs:
+  results_root: results/leakage_free_tabular
+  tables_root: tables/leakage_free_tabular

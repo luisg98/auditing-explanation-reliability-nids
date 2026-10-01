@@ -1,0 +1,19 @@
+# Direct scientific dependencies used by the validated ARTIIS artefact build.
+#
+# These versions record the environment in which the final analyses and tests
+# were validated.  The lock is intentionally restricted to project dependencies;
+# it excludes unrelated packages installed in the author's base environment.
+numpy==2.4.3
+pandas==3.0.1
+scipy==1.17.1
+scikit-learn==1.8.0
+tensorflow==2.21.0
+keras==3.14.0
+shap==0.51.0
+lime==0.2.0.1
+matplotlib==3.10.8
+joblib==1.5.3
+PyYAML==6.0.3
+pyarrow==23.0.1
+tqdm==4.67.3
+pytest==9.0.3

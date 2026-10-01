@@ -1,0 +1,11 @@
+panel,task_id,records,record_unit,sample_seed_records,unique_source_ids,unique_flow_ids,unique_raw_duplicate_groups
+central,cicids2017_binary,1280,sample_seed,1280,1276,1276,1276
+central,ton_iot_binary,1280,sample_seed,1280,1269,1269,1269
+stochastic,cicids2017_binary,80,sample_seed,80,80,80,80
+stochastic,ton_iot_binary,80,sample_seed,80,80,80,80
+central_expanded,cicids2017_binary,2560,model_seed,1280,1276,1276,1276
+central_expanded,ton_iot_binary,2560,model_seed,1280,1269,1269,1269
+stochastic_expanded,cicids2017_binary,160,model_seed,80,80,80,80
+stochastic_expanded,ton_iot_binary,160,model_seed,80,80,80,80
+outcome,cicids2017_binary,3897,model_seed,3855,3573,3573,3573
+outcome,ton_iot_binary,5120,model_seed,4803,3836,3836,3836

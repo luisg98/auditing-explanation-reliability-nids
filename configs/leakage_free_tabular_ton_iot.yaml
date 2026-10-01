@@ -1,0 +1,56 @@
+pipeline_version: leakage_free_tabular_v2
+
+# Staging-only prepare run for ToN-IoT.  prepare.py's output-namespace guard
+# (_assert_output_namespace_available) allows exactly one frozen decision per
+# results_root, and that root already belongs to the CICIDS2017 prepare run
+# (configs/leakage_free_tabular.yaml).  This config writes to an isolated
+# staging root; scripts/prepare_ton_iot_leakage_free.py then copies
+# processed/ton_iot_binary/ into the shared results/leakage_free_tabular
+# processed root so training.py/epistemic_audit.py need no dataset-aware path
+# logic. See amendment ton_iot_retrained_via_v2_pipeline_20260829 in
+# configs/leakage_free_epistemic_audit.yaml.
+
+dataset:
+  name: ton_iot
+  source_path: data/processed/source_parquet/ton_iot
+  glob_pattern: "*.parquet"
+  label_column: Attack
+  drop_columns:
+    - Label
+  fixed_abs_clip: 1000000000000.0
+  benign_labels: [Benign]
+
+tasks:
+  - task_id: ton_iot_binary
+    task: binary
+    class_names: [BENIGN, ATTACK]
+    max_rows_per_class: 250000
+
+split:
+  train_size: 0.70
+  validation_size: 0.15
+  test_size: 0.15
+  seed: 42
+  group_key: exact_clipped_float64_feature_sha256
+  drop_label_conflicting_fingerprint_groups: true
+  max_absolute_split_fraction_deviation: 0.03
+
+preprocessing:
+  imputer_strategy: median
+  variance_threshold: 0.0
+  drop_exact_duplicate_features: true
+  duplicate_feature_policy: train_only_keep_first_and_record_group
+  scaler: standard
+  output_dtype: float32
+
+representation_guard:
+  enabled: true
+  precedence: [train, validation, test]
+  exact_float32: true
+  rounded_float32_decimals: 5
+  filtering_uses_labels: false
+  require_all_classes_after_filtering: true
+
+outputs:
+  results_root: results/leakage_free_tabular_ton_iot_prep
+  tables_root: tables/leakage_free_tabular_ton_iot_prep

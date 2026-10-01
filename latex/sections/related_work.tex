@@ -1,0 +1,46 @@
+\section{Related Work}
+
+\begin{table*}[t]
+\centering\small
+\caption{Binary protocol. Widths denote hidden units or convolution filters;
+the CNN dense width follows the slash. Seeds 42--46 share one data split.
+Budgets are experimental settings, not measured service latency.}
+\label{tab:protocol}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lll}
+\toprule
+ & CICIDS2017 (80 features) & NF-ToN-IoT-V2 (40 features) \\
+\midrule
+Train / validation / test & 349,972 / 71,735 / 71,364 & 350,000 / 74,998 / 74,998 \\
+MLP widths; dropout; batch & 256--128--64; .20; 512 & 256--128; .10; 256 \\
+CNN filters/dense; dropout; batch & 64--128--256/128; .20; 512 & 32/64; .10; 512 \\
+\midrule
+Explainer & Configuration & Reproducibility test \\
+Gradient$\times$Input (G$\times$I) & Gradient times standardised input & No stochastic estimate \\
+Integrated Gradients (IG) & Training median; 64 trapezoid intervals & 64 versus 128 intervals \\
+Occlusion & One coordinate replaced by training median & Fixed-rule repetition \\
+LIME & 32,000 perturbations; Ridge; all features & 50 independently seeded runs \\
+KernelSHAP (SHAP) & 102,400 coalitions; identity link; median & Two independently seeded runs \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Warnecke et al. evaluate explanation accuracy, sparsity and security-oriented
+criteria, including efficiency, for malware and vulnerability models
+\cite{warnecke2020evaluating}. Kumar and Thing compare explanations of deep
+network intrusion detectors using agreement and security-focused criteria
+\cite{kumar2024evaluating}. Maseno et al. assess SHAP through permutation
+importance, retraining, feature-removal and spurious-feature diagnostics on
+ToN-IoT and UNSW-NB15, using logistic regression, random forests and XGBoost
+\cite{maseno2026reliability}. Our contribution is incremental to these
+multidimensional evaluations; different models, targets and interventions
+preclude importing their numerical method rankings.
+
+Evaluation procedures themselves require scrutiny. MetaQuantus examines the
+behaviour of explanation-quality estimators~\cite{hedstrom2023metaquantus}; ROAD
+and deletion-benchmark analyses expose dependence on removal rules and induced
+inputs~\cite{rong2022road,wang2024deletion}. We address this dependence directly
+by retaining fixed accounts and targets while changing replacement operators.
+We also distinguish independently resampled LIME/KernelSHAP accounts from
+IG quadrature sensitivity and deterministic repetition. This prevents several
+different notions of consistency from becoming a single ranking of explainers.

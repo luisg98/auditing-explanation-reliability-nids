@@ -1,0 +1,46 @@
+# Credentials and machine-local settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.*
+credentials.*
+
+# Local environments, caches, logs, and editor/build residue
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store
+.vscode/
+.idea/
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Source data and model/intermediate objects; reviewed result records are allowlisted
+/data/raw/
+/data/processed/
+/models/
+/checkpoints/
+/logs/
+/tmp/
+/cache/
+*.npy
+*.npz
+*.parquet
+*.joblib
+*.keras
+*.h5
+*.pkl

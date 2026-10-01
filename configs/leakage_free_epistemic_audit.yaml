@@ -1,0 +1,513 @@
+protocol_id: leakage_free_epistemic_audit_v2
+frozen_date: 2026-08-09
+status: amended_after_initial_predictive_fit_before_any_accepted_attribution
+
+amendments:
+  - amendment_id: lime_shap_sample_budget_increase_20260831
+    timing: >-
+      Added after the first full confirmatory run of every stage (panel
+      through summarize) at the original stochastic budget (lime
+      num_samples=1000/independent_runs=10, shap nsamples=1024) completed
+      and was inspected. That run is superseded, not reused: none of its
+      attribution outputs are treated as prior evidence for this amendment's
+      own conclusions.
+    protocol_changes:
+      - Increase lime.num_samples from 1000 to 32000 and
+        lime.independent_runs from 10 to 50.
+      - Increase shap.nsamples from 1024 to 102400.
+      - shap.background_size is deliberately left at 100 (unchanged).
+    reason: >-
+      LIME and KernelSHAP are Monte Carlo estimators: each call redraws
+      random perturbations/coalitions from scratch (no library-level way to
+      extend a smaller draw into a larger one), so the estimate's own noise
+      floor is set by how many draws are used. A prior pipeline iteration
+      (pipeline_v5 through v6.1/v6.2/threats_10d, archived; see
+      configs/pipeline_v5.yaml and configs/threats_10d/preregistration.yaml)
+      already explored this trade-off empirically across three escalating
+      rounds (lime sensitivity sweeps up to num_samples=16000, settling on
+      8000 as production; kernelshap nsamples swept
+      [100,200,400,800]->[800,1600,3200]->[6400,12800,25600], settling on
+      25600) and is the basis for these being real, not arbitrary, numbers.
+      This amendment goes beyond that ceiling (lime 32000, shap 102400)
+      because runtime benchmarked against the actual trained models here
+      showed ample remaining budget before the 2026-09-30 camera-ready
+      deadline (empirically ~9 days of compute for the full stochastic-probe
+      re-run at these settings, benchmarked from this project's own
+      instrumented per-condition timings, leaving over two weeks of margin).
+      Independent_runs is raised from 10 to 50 to match threats_10d's own
+      converged choice (confirmation_repetitions_total: 50), directly
+      improving the precision of the repeatability bootstrap, which is the
+      analysis this project's own audit found weakest at the original budget.
+      background_size is not increased, and this is itself a finding worth
+      recording: unlike pipeline_v5's original KernelSHAP implementation
+      (src/pipeline_v5/xai.py::_select_background), which averaged over a
+      diverse, stratified random sample of background_size distinct training
+      rows, this package's explain_kernel_shap
+      (src/leakage_free_tabular/epistemic_audit.py) deliberately uses a
+      single declared reference point (e.g. the training median) broadcast
+      to fill the background matrix, for consistency with this audit's other
+      single-reference-point probes (occlusion, integrated gradients).
+      Because every row of that background matrix is identical, the
+      per-coalition average KernelSHAP computes over it is invariant to
+      background_size — increasing it from 100 to any larger value changes
+      nothing about the resulting Shapley-value estimate, only its
+      computational cost, so no accuracy is left on the table by leaving it
+      unchanged. The historical background_size escalation
+      (32/64/128/256 -> 256/512/1024 -> 1024/2048) answered a different
+      question (how many diverse rows are enough to characterize "typical"
+      behavior) that does not apply to this single-reference-point design.
+  - amendment_id: multiclass_validation_support_rule_20260809
+    prior_protocol_sha256: d00c1fbd502cc217fedc5da6994c992ba98af4441eb1efa344758640b0eccb1a
+    timing: >-
+      Added after observing only class support in the fixed leakage-controlled
+      split and before any hyperparameter selection, final-model training, test
+      prediction, or attribution computation.
+    observed_information:
+      validation_support:
+        Heartbleed: 1
+        Infiltration: 5
+    information_not_observed:
+      - model_selection_performance
+      - final_model_performance
+      - test_predictions
+      - attribution_results
+    decision_basis: >-
+      Both changes in this amendment use class support from the fixed training
+      and validation labels only. No candidate or final-model performance was
+      available.
+    protocol_changes:
+      - Freeze multiclass inferential eligibility at validation support >= 20.
+      - Cap balanced training class weights at 10.0 for every task and candidate.
+    reason: >-
+      With one Heartbleed and five Infiltration observations in validation, a
+      nine-class macro average is too sensitive to individual flows for model
+      selection or inferential summaries. The full nine-class macro-F1 remains
+      reported descriptively; inferential class IDs are frozen by validation
+      support >= 20 and cannot be changed using test support. Uncapped balanced
+      weights would also assign approximately 428 to Heartbleed and 137 to
+      Infiltration from training support alone; the fixed cap prevents these few
+      flows from dominating optimization while retaining all nine output classes.
+  - amendment_id: bounded_stochastic_probe_20260809
+    prior_protocol_sha256: e44008e1ebf83bc744c739b430c3f1246aa5751780e93a309967a7bdbc73e6ce
+    timing: >-
+      Added after the leakage-controlled arrays and class-support counts were
+      available, but before model selection, final-model training, test
+      prediction, panel selection, or any attribution computation.
+    information_not_observed:
+      - model_selection_performance
+      - final_model_performance
+      - test_predictions
+      - selected_panel_composition
+      - attribution_results
+    prior_registered_values:
+      stochastic_subset_per_true_class_per_seed: 24
+      lime_num_samples: 2000
+      lime_independent_runs: 20
+      projected_model_evaluations: approximately_105_million
+    amended_values:
+      # NOTE (2026-08-31): validate_audit_config checks these three fields
+      # against the *active* config as its single consistency anchor for the
+      # stochastic budget, so this block tracks the current values rather than
+      # only the 2026-08-09 decision. The 2026-08-09 values were
+      # stochastic_subset_per_true_class_per_seed: 8, lime_num_samples: 1000,
+      # lime_independent_runs: 10; they were superseded by amendment
+      # lime_shap_sample_budget_increase_20260831, which is the authoritative
+      # record of *why* these numbers changed to their current values — this
+      # block is kept in sync with that amendment, not re-litigated here.
+      stochastic_subset_per_true_class_per_seed: 8
+      lime_num_samples: 32000
+      lime_independent_runs: 50
+    protocol_changes:
+      - Reduce the stochastic subset from 24 to 8 flows per class and seed.
+      - Reduce independent local-surrogate runs from 20 to 10.
+      - Reduce perturbation samples per local-surrogate run from 2000 to 1000.
+      - Restrict class-specific aggregates and gates to inferentially eligible classes.
+      - Retain rare-class per-flow results as descriptive evidence.
+    reason: >-
+      The original stochastic grid would request approximately 105 million
+      model evaluations before functional checks. The amended grid preserves
+      repeated independent fits and class/seed stratification while keeping
+      computation bounded enough to address the scientific question before the
+      submission deadline. The decision used only declared workload arithmetic
+      and validation class support, not predictive or attribution results.
+      (lime_num_samples/lime_independent_runs in amended_values above were
+      later raised again by amendment lime_shap_sample_budget_increase_20260831
+      — this reason describes only the original 2026-08-09 reduction.)
+  - amendment_id: decision_target_and_triangulation_clarification_20260809
+    prior_protocol_sha256: 393ab4e0035d70d6f58873c093fea4399f542b4f796e9afdfc439462d1cbba7f
+    timing: >-
+      Written at 14:27:21 Europe/Lisbon after model selection had completed at
+      14:25:20 and while the first final fit was running. The first final model
+      and test artefacts were written only at 14:27:27--14:27:28. This amendment
+      therefore precedes every audit panel and attribution and precedes the
+      materialisation or analysis of final test artefacts, but it is not claimed
+      to precede model selection or the start of final training.
+    available_but_not_inspected_when_deciding:
+      - model_selection_candidate_metrics
+      - selected_candidate_performance
+    not_yet_materialized_when_written:
+      - final_model_artifacts
+      - final_test_predictions
+      - selected_panel_composition
+      - attribution_results
+    decision_basis: >-
+      The changes arose from code-review questions about target semantics,
+      dependent run pairs, measurement sensitivity, control fairness, and model
+      parameter dependence. No candidate metric, final metric, prediction, panel
+      composition, or attribution value was inspected to choose them.
+    protocol_changes:
+      - Explain the true class on central correct-for-both decisions.
+      - Explain each model's predicted class on the model-specific outcome panel.
+      - Bootstrap local-surrogate repeatability by resampling independent runs and recomputing the per-flow pairwise U-statistic.
+      - Summarize registered reference sensitivity for integrated gradients and occlusion.
+      - Add pairwise cross-probe triangulation without ranking probes.
+      - Match primary random coordinate controls by per-flow replacement-displacement bins.
+      - Treat signed interventions as method-aware secondary diagnostics, not a general faithfulness gate.
+      - Add a trained-versus-reinitialized parameter-dependence sanity check as a necessary, not sufficient, condition.
+    reason: >-
+      An error analysis must explain the decision the model actually made, not
+      the class it failed to predict. Pairwise similarities from ten repeated
+      surrogate fits are statistically dependent, so treating the 45 run pairs
+      as independent would understate uncertainty. Reference sensitivity and
+      cross-probe triangulation directly test whether a feature account survives
+      reasonable measurement choices; neither analysis selects a winning probe.
+  - amendment_id: cnn_replaces_tabular_resnet_shap_added_20260829
+    timing: >-
+      Added before any stage of this protocol had been executed for the
+      corrected CICIDS2017 dataset (zero output existed on disk for this audit
+      at the time of this amendment) — no predictive, panel, or attribution
+      result of any kind had been observed.
+    protocol_changes:
+      - Replace tabular_resnet with a 1D CNN (src.models.cnn.build_cnn_flat_input)
+        as the second audited architecture alongside mlp; tabular_resnet is
+        dropped from scope.model_families and excluded_model_families no
+        longer excludes cnn.
+      - Add KernelSHAP as a fifth measurement probe (see measurement_probes.shap),
+        applied uniformly to both cicids2017_binary and cicids2017_multiclass
+        (no probe-set branching by task).
+      - Add ton_iot_binary to scope.tasks, auditing pipeline_v5's already
+        trained and accepted MLP/CNN models for that task without retraining
+        them through this package's own training stage.
+    reason: >-
+      MASTER_PROMPT_V2_CAMERA_READY.md — the authoritative, more recent build
+      plan for the ARTIIS 2026 camera-ready correction of #8416 — requires the
+      audited architectures to be exactly MLP and CNN (matching the original
+      submission's black-box framing) and requires KernelSHAP as one of the
+      four core XAI methods for every task, including multiclass. This
+      amendment brings this protocol in line with that plan rather than the
+      earlier tabular_resnet/no-SHAP design, made in a prior session before
+      the master prompt's requirements were finalized. The original exclusion
+      rationale for CNN (arbitrary column-order/adjacency assumption) is a
+      genuine methodological caveat, not a correctness bug — it is documented
+      as a discussion-section limitation in the manuscript rather than grounds
+      to drop CNN from the audited architecture set.
+  - amendment_id: ton_iot_retrained_via_v2_pipeline_20260829
+    timing: >-
+      Added the same day as, and immediately after, cnn_replaces_tabular_resnet_shap_added_20260829,
+      before any stage of this protocol had been executed for ton_iot_binary
+      under this package. Supersedes that amendment's ton_iot_binary bullet.
+    protocol_changes:
+      - ton_iot_binary is prepared and trained through this package's own
+        leakage_free_tabular pipeline (prepare.py + training.py), not audited
+        from pipeline_v5's pre-trained artifacts as-is.
+    reason: >-
+      pipeline_v5's ton_iot_binary artifacts use five independently resampled
+      train/val/test splits (one per model seed), verified by hashing each
+      seed's train_idx.npy/test_idx.npy: every seed differs. This package's
+      load_condition_data/_require_guard_pass require a single split shared
+      by all five final seeds (one_fixed_split_shared_by_all_model_seeds) plus
+      guard files (split_validation.csv, feature_groups.json, per-row
+      fingerprint arrays) that pipeline_v5's outputs do not have and were not
+      generated under invariants this package can honestly assert (pipeline_v5
+      does not guarantee zero raw/rounded cross-split overlap). Reusing those
+      artifacts as-is would require fabricating a guard record asserting
+      invariants that do not hold, and would silently misalign
+      cross_seed_prediction_agreement's by-position comparison across seeds
+      whose test sets are not the same rows. ton_iot_binary is instead
+      registered as a normal task in configs/leakage_free_tabular.yaml-equivalent
+      dataset config and configs/leakage_free_tabular_training.yaml, reusing
+      pipeline_v5's already-accepted hyperparameters (the distinct candidate
+      configurations observed across pipeline_v5's five per-seed selection
+      winners, deduplicated into grids.ton_iot_binary in the training config)
+      rather than running a new hyperparameter search. This makes ton_iot_binary
+      structurally identical to the two CICIDS2017 tasks throughout this
+      protocol, at the cost of retraining rather than reusing pipeline_v5's
+      exact model weights.
+  - amendment_id: coordinate_identifiability_and_target_reference_20260809
+    timing: >-
+      Added after the first leakage-controlled predictive fit and a code-only
+      panel dry run, but before any accepted attribution or functional result.
+      The affected predictive models and panel are invalidated and rebuilt.
+    observed_information:
+      - predictive metrics from the invalidated pre-deduplication fit
+      - train-identical feature-column inventory
+      - panel support counts without feature accounts
+    information_not_observed:
+      - attribution_values
+      - attribution_rankings
+      - functional_effects
+      - repeatability_or_equivalence_gates
+    protocol_changes:
+      - Collapse train-identical model coordinates before scaling and record every original feature in an equivalence group.
+      - Replace true-class-conditioned references by explained-target-class references whenever the explained target may differ from truth.
+      - Restrict the correct-versus-error contrast to non-benign true events while retaining matching within true class.
+      - Use common random-number streams for paired stochastic-probe comparisons across the two models.
+      - Use one shared reinitialized parameter state across sanity probes for each fitted condition.
+      - Align both signs of local-surrogate interventions with target-probability increase.
+      - Treat null or rank-tied attribution vectors as non-identifying and require explicit non-degeneracy coverage for identification gates.
+      - Bootstrap fitted seeds and source flows as crossed clusters, sharing each source draw across every seed in which it appears.
+      - Bootstrap local-surrogate repeatability with whole-panel run jackknife pseudovalues, avoiding optimistic self-pair diagonals.
+      - Use normalized attribution-mass Jaccard for scale-invariant cross-probe comparison and a single normalized-mass-distance gate for parameter sanity.
+      - Report Monte Carlo error from the 50 frozen random-control draws and require a conservative functional-gate sensitivity after subtracting 1.96 per-flow Monte Carlo standard errors.
+      - Restrict functional response to the frozen central stochastic subset and defer the outcome-panel correct-versus-error contrast.
+    reason: >-
+      Duplicate model coordinates are not separately identifiable and can split
+      attribution mass for representational rather than functional reasons. A
+      true-class reference also changes meaning between correct and erroneous
+      decisions when the probe targets the predicted class. Both defects would
+      confound the evidential audit if corrected after inspecting explanations.
+
+scientific_question: >-
+  When a leakage-controlled neural flow-based intrusion detector predicts the
+  correct class, to what extent can a feature-level account of that decision be
+  reproduced and supported by the frozen model's response under explicitly
+  defined interventions, rather than by predictive success alone?
+
+scope:
+  tasks: [cicids2017_binary, cicids2017_multiclass, ton_iot_binary]
+  model_families: [mlp, cnn]
+  model_seeds: [42, 43, 44, 45, 46]
+  excluded_model_families: [lstm]
+  exclusion_reason: >-
+    Recurrent models impose a sequence-order assumption on an arbitrary order
+    of flow-feature columns and are not accepted audit objects in this
+    protocol. CNN was excluded for the same reason in an earlier session, but
+    MASTER_PROMPT_V2_CAMERA_READY.md requires it as one of the two audited
+    architectures (matching the original #8416 submission's black-box
+    framing) — see amendment cnn_replaces_tabular_resnet_shap_added_20260829.
+    The column-adjacency caveat for CNN is retained as a manuscript
+    discussion-section limitation rather than an exclusion criterion.
+
+data_guard:
+  processed_root: results/leakage_free_tabular/processed
+  require_train_only_preprocessing: true
+  require_test_blind_model_selection: true
+  required_zero_cross_split_overlap:
+    - exact_float32_model_tensor
+    - rounded_5_decimal_float32_model_tensor
+  require_source_file_and_row_identity: true
+  reject_on_guard_failure: true
+
+multiclass_inference:
+  eligibility_partition: validation
+  minimum_validation_support: 20
+  freeze_eligible_class_ids_before_test_evaluation: true
+  model_selection_primary_metric: validation_supported_macro_f1
+  model_selection_tiebreak:
+    - validation_supported_balanced_accuracy
+    - validation_supported_weighted_f1
+    - validation_supported_log_loss
+  full_nine_class_macro_f1_role: descriptive_only
+  interpretation: >-
+    Inferential multiclass summaries average only class IDs with at least 20
+    validation observations. Eligibility is frozen from validation labels and
+    is never changed using test support. Per-class results and the full
+    nine-class macro-F1 remain visible as descriptive diagnostics.
+
+panel:
+  selection_reads_attributions: false
+  central_eligibility: correct_for_both_models_at_the_same_seed
+  target: true_class
+  central_target: true_class
+  outcome_target: predicted_class_of_the_audited_model
+  require_same_target: true
+  sampling_seed: 20260809
+  maximum_per_true_class_per_seed: 128
+  minimum_class_support_for_class_specific_inference: 20
+  stochastic_subset_per_true_class_per_seed: 8
+  outcome_panel:
+    enabled: true
+    maximum_correct_per_true_class_model_seed: 128
+    include_all_available_errors_up_to: 128
+
+measurement_probes:
+  gradient_x_input:
+    role: direct_local_derivative_probe
+    batch_size: 256
+  integrated_gradients:
+    role: path_integrated_derivative_probe
+    main_steps: 64
+    numerical_sensitivity_steps: [32, 128]
+    main_reference: training_median
+    reference_variants: [zero_scaled, training_median, target_class_median]
+    batch_size: 128
+  occlusion:
+    role: coordinate_intervention_probe
+    main_replacement: training_median
+    replacement_variants: [zero_scaled, training_median, target_class_median]
+    batch_size: 1024
+  lime:
+    role: stochastic_local_surrogate_probe
+    num_samples: 32000
+    independent_runs: 50
+    training_background_max_rows: 50000
+  shap:
+    role: cooperative_game_coalition_probe
+    method: kernel
+    nsamples: 102400
+    main_background: training_median
+    background_variants: [zero_scaled, training_median, target_class_median]
+    background_size: 100
+    batch_size: 256
+
+representation:
+  ranking_uses_absolute_attribution: true
+  weighted_jaccard_uses_l1_normalized_absolute_mass: true
+  signed_intervention_uses_signed_attribution: true
+  top_k: 10
+  null_account_policy: fail_closed_not_perfect_agreement
+  deterministic_tie_break_role: serialization_only_not_identification
+  minimum_account_l1: 1.0e-12
+  account_l1_sensitivity_thresholds: [1.0e-10, 1.0e-8]
+  rank_tie_relative_tolerance: 1.0e-8
+  minimum_identifiable_fraction_for_gate: 0.95
+  metrics:
+    - spearman
+    - jaccard_10
+    - weighted_jaccard
+    - normalized_mass_l1
+
+repeatability:
+  lime_estimand: mean_pairwise_similarity_over_independent_runs_for_the_same_flow
+  lime_uncertainty: crossed_source_seed_shared_run_jackknife_pseudovalue_bootstrap
+  integrated_gradients_estimand: similarity_to_the_128_step_result
+  occlusion_estimand: deterministic_under_a_fixed_replacement_rule
+  gates:
+    spearman_ci_lower: 0.90
+    jaccard_10_ci_lower: 0.80
+
+cross_model_identification:
+  paired_by: [task_id, seed, source_file, source_row, target_class]
+  equivalence_gates:
+    spearman_ci_lower: 0.80
+    weighted_jaccard_ci_lower: 0.70
+    jaccard_10_ci_lower: 0.60
+    normalized_mass_l1_ci_upper: 0.20
+  interpretation: >-
+    Failure means that architecture-independent identification was not
+    established for the two fitted tabular neural cases. It does not identify
+    which account is semantically correct.
+
+reference_sensitivity:
+  methods: [integrated_gradients, occlusion, shap]
+  comparison: each_registered_variant_vs_training_median
+  role: descriptive_measurement_sensitivity
+  no_posthoc_reference_selection: true
+
+cross_probe_triangulation:
+  role: pairwise_identification_not_probe_ranking
+  deterministic_central_probes: [gradient_x_input, integrated_gradients, occlusion]
+  all_probe_stochastic_subset: [gradient_x_input, integrated_gradients, occlusion, lime, shap]
+  gates:
+    spearman_ci_lower: 0.80
+    weighted_jaccard_ci_lower: 0.70
+    jaccard_10_ci_lower: 0.60
+    normalized_mass_l1_ci_upper: 0.20
+  interpretation: >-
+    Passing all pairwise gates supports a probe-independent feature account
+    under the registered measurements. Failure means that probe-independent
+    identification was not established; it does not rank probes or show which
+    account is semantically correct.
+
+parameter_dependence_sanity:
+  status: necessary_not_sufficient
+  comparison: trained_vs_same_architecture_reinitialized
+  probes: [gradient_x_input, integrated_gradients]
+  panel: stochastic_subset_of_the_central_panel
+  reinitialization_seed: 20260810
+  common_reinitialization_across_probes: true
+  primary_metric: normalized_mass_l1
+  primary_change_gate:
+    normalized_mass_l1_ci_lower: 0.20
+  other_similarity_metrics_role: descriptive_no_gate
+  interpretation: >-
+    Failure of the single predeclared normalized-mass-distance gate means that
+    the measured feature account did not establish dependence on the fitted
+    parameter state. Passing is necessary but does not establish a scientifically
+    correct or causal rationale. Other similarity metrics are descriptive.
+
+functional_checks:
+  target_output: probability_of_the_explained_class
+  panel_scope: central_stochastic_subset
+  deletion_and_insertion:
+    feature_fractions: [0.05, 0.10, 0.20, 0.30, 0.50]
+    evaluators: [training_median, target_class_median]
+    random_feature_repetitions: 50
+    random_control_uncertainty: frozen_independent_draws_per_flow_and_fraction
+    monte_carlo_standard_error: linear_aopc_weights_with_independent_fraction_draws
+    gate_sensitivity: per_flow_gap_minus_1.96_monte_carlo_standard_errors
+    primary_random_control: per_flow_per_fraction_displacement_bin_matched_subset
+    displacement_bins: 5
+    sensitivity_random_control: uniform_coordinates
+    report_displacement_balance: true
+    primary_estimand: attribution_minus_random_aopc
+  signed_intervention:
+    status: secondary_descriptive
+    top_features_each_direction: 5
+    strengths: [0.25, 0.50, 0.75, 1.00]
+    random_feature_repetitions: 50
+    range_check: training_feature_min_max
+    method_aware_operators:
+      gradient_x_input: shrink_toward_zero_scaled
+      integrated_gradients: shrink_toward_declared_reference
+      occlusion: shrink_toward_declared_replacement
+      shap: shrink_toward_declared_reference
+      lime: move_in_local_coefficient_direction_within_training_range
+    no_general_faithfulness_gate: true
+  interpretation: >-
+    A positive result supports sensitivity of the frozen model under the
+    declared operator. It is not causal feature truth or a feasible traffic
+    intervention.
+
+correct_vs_error:
+  enabled: false
+  status: deferred_before_attribution_generation
+  reason: outcome_attributions_and_functional_compute_outside_bounded_central_audit
+  unit: true_attack_event_decision
+  excluded_true_classes: [BENIGN]
+  methods: [gradient_x_input, integrated_gradients, occlusion]
+  match_within: [task_id, seed, model, true_class]
+  matching_variables: [model_confidence, model_margin]
+  assignment: maximum_cardinality_then_minimum_distance_without_replacement
+  primary_caliper_standard_deviations: 0.35
+  sensitivity_calipers_standard_deviations: [0.20, 0.50]
+  primary_estimand: paired_correct_minus_error_attribution_minus_random_aopc
+  no_causal_interpretation: true
+
+uncertainty:
+  bootstrap_resamples: 5000
+  confidence_level: 0.95
+  bootstrap_seed: 20260809
+  hierarchy: [model_seed, source_flow]
+  cluster_relationship: crossed
+  source_resample_shared_across_seeds: true
+  equal_seed_weight: true
+  lime_additional_level: whole_panel_independent_probe_run
+  lime_run_resampling: jackknife_pseudovalues_shared_across_flows_within_seed
+  multiplicity: marginal_intervals_no_familywise_claim
+  minimum_seed_coverage: 5
+
+evidence_policy:
+  admissible_claim_types:
+    - predictive_performance_on_declared_leakage_controls
+    - repeatability_under_the_declared_probe_configuration
+    - paired_cross_model_identification_for_correct_decisions
+    - paired_cross_probe_identification_under_registered_measurements
+    - frozen_model_response_under_declared_interventions
+  prohibited_claims:
+    - causal_attack_mechanism
+    - protocol_independent_explanation
+    - deployment_validity
+    - analyst_trust_or_operational_utility
+    - superiority_of_one_xai_method
+  fail_closed_cache: signature_size_and_sha256

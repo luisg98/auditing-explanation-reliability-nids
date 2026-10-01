@@ -1,0 +1,548 @@
+# ---------------------------------------------------------------------------
+# Research extensions to the frozen camera-ready audit protocol.
+#
+# The camera-ready protocol (configs/leakage_free_epistemic_audit.yaml,
+# configs/leakage_free_tabular_training.yaml, configs/leakage_free_tabular.yaml)
+# is the BASELINE and is not modified by anything declared here.  Neither are
+# the frozen implementation files whose bytes enter the baseline cache
+# signatures (src/leakage_free_tabular/{cache,epistemic_audit,training}.py,
+# src/models/{mlp,cnn}.py, src/utils/seed.py): every extension lives in
+# src/leakage_free_tabular_ext/ and writes only under
+# results/leakage_free_tabular/audit_extensions/ and
+# tables/leakage_free_tabular/audit_extensions/.
+#
+# Nothing here changes latex/ (the manuscript is untouched).
+# ---------------------------------------------------------------------------
+protocol_id: leakage_free_audit_extensions_v1
+frozen_date: 2026-09-08
+baseline_protocol: leakage_free_epistemic_audit_v2
+status: exploratory_extension_not_a_confirmatory_reanalysis_of_the_baseline
+
+role: >-
+  Five pre-declared extension studies.  They add evaluation regimes,
+  perturbation operators, contrasts and diagnostics that the camera-ready
+  protocol either deferred or did not register.  Every number produced here is
+  labelled exploratory unless the study text says otherwise: the baseline gates
+  were pre-registered before its own attributions were opened, whereas these
+  studies are declared after the baseline results were inspected and therefore
+  cannot inherit that status.
+
+shared:
+  tasks: [cicids2017_binary, cicids2017_multiclass, ton_iot_binary]
+  models: [mlp, cnn]
+  seeds: [42, 43, 44, 45, 46]
+  # Reused verbatim from the baseline protocol so that extension numbers are
+  # comparable with the manuscript's tables.
+  representation:
+    ranking_uses_absolute_attribution: true
+    top_k: 10
+    minimum_account_l1: 1.0e-12
+    rank_tie_relative_tolerance: 1.0e-8
+    minimum_identifiable_fraction_for_gate: 0.95
+    metrics: [spearman, jaccard_10, weighted_jaccard, normalized_mass_l1]
+  uncertainty:
+    bootstrap_resamples: 5000
+    confidence_level: 0.95
+    bootstrap_seed: 20260908
+    minimum_seed_coverage: 5
+  gates:
+    repeatability:
+      spearman_ci_lower: 0.90
+      jaccard_10_ci_lower: 0.80
+    equivalence:
+      spearman_ci_lower: 0.80
+      weighted_jaccard_ci_lower: 0.70
+      jaccard_10_ci_lower: 0.60
+      normalized_mass_l1_ci_upper: 0.20
+
+outputs:
+  results_root: results/leakage_free_tabular/audit_extensions
+  tables_root: tables/leakage_free_tabular/audit_extensions
+  reports_root: docs/audit_extensions
+
+# ===========================================================================
+# Study 1 - deployment-like splits (temporal, host, session)
+# ===========================================================================
+study1_deployment_splits:
+  enabled: true
+  question: >-
+    Does the audit's predictive operating point and explanation-reliability
+    profile survive an evaluation split that forbids train/test overlap in
+    capture time or in the host/session that produced the flow, rather than
+    only in the feature vector?
+  baseline_contrast: >-
+    The baseline uses one fixed random 70/15/15 split with feature-vector-hash
+    group safety.  Temporal and host/session structure is unconstrained there,
+    so near-duplicate flows from the same host, session or minute can sit on
+    both sides of the split.
+  metadata_source:
+    cicids2017: data/processed/source_parquet/cicids2017
+    # NF-ToN-IoT-V2 as distributed in this repository carries neither a
+    # timestamp column nor IPv4 addresses (only L4 ports), so neither a
+    # temporal nor a host split is constructible for it.  This is recorded as
+    # an infeasibility, not skipped silently.
+    ton_iot: unavailable_no_timestamp_or_address_columns
+  metadata_columns:
+    timestamp: Timestamp
+    source_address: Src IP
+    destination_address: Dst IP
+    source_port: Src Port
+    destination_port: Dst Port
+    protocol: Protocol
+  metadata_is_never_a_model_feature: true
+  tasks: [cicids2017_binary, cicids2017_multiclass]
+  policies:
+    - policy_id: global_temporal
+      description: >-
+        Flows ordered by capture timestamp; the earliest 70% of rows are train,
+        the next 15% validation, the latest 15% test.  Whole feature-hash
+        groups follow their earliest row.  A policy that cannot place every
+        class in every partition is reported as infeasible for that task
+        instead of being silently repaired.
+      order_by: timestamp
+      per_class: false
+      require_all_classes_each_split: true
+    - policy_id: per_class_temporal
+      description: >-
+        Within each class, flows ordered by capture timestamp and cut at the
+        same 70/15/15 boundaries.  Weaker than global_temporal (it does not
+        forbid a test flow from preceding a train flow of another class) but
+        feasible when attack families are confined to single capture days.
+      order_by: timestamp
+      per_class: true
+      require_all_classes_each_split: true
+    - policy_id: host_grouped
+      description: >-
+        Groups are source hosts (Src IP).  Whole hosts are assigned to one
+        partition, balancing per-class row counts.  Hosts carrying several
+        classes are kept intact rather than dropped.
+      group_key: source_address
+      per_class: false
+      require_all_classes_each_split: true
+    - policy_id: session_grouped
+      description: >-
+        Groups are direction-insensitive 5-tuple sessions
+        (sorted address pair, sorted port pair, protocol).  Whole sessions are
+        assigned to one partition.
+      group_key: session_five_tuple
+      per_class: false
+      require_all_classes_each_split: true
+    # Amendment host_disjoint_by_dropping_crossing_groups_20260908.
+    # Timing: added after the split-feasibility stage ran and before any model
+    # was fitted or any attribution computed under a study 1 policy.
+    # Observed information: split feasibility diagnostics only (partition
+    # sizes, class coverage, component sizes).  No predictive or attribution
+    # result under any policy had been produced.
+    # Reason: host_grouped is infeasible on CICIDS2017 not because hosts are
+    # unusable but because the two groupings interact.  The capture has only
+    # 25-113 distinct source hosts per day, and feature-hash groups (identical
+    # feature vectors) frequently span hosts; taking the union of both
+    # groupings therefore collapses ~92% of the binary task's rows into one
+    # component and leaves 168 validation and 49 test rows.  The alternative
+    # that keeps hosts genuinely disjoint is to drop the rows whose feature-hash
+    # group spans hosts rather than merge those hosts, which is declared here
+    # as a separate policy so both readings stay visible.
+    - policy_id: host_grouped_drop_crossing
+      description: >-
+        Groups are source hosts (Src IP), kept exactly disjoint by removing the
+        rows whose feature-hash group spans several hosts instead of merging
+        those hosts into one component.  The number of removed rows is
+        reported; they are recorded by the frozen preparation code under its
+        existing dropped-row reason label for conflicting feature-hash groups.
+      group_key: source_address
+      drop_crossing_groups: true
+      per_class: false
+      require_all_classes_each_split: true
+  split:
+    train_size: 0.70
+    validation_size: 0.15
+    test_size: 0.15
+    seed: 20260908
+    # Amendment temporal_class_prior_shift_tolerance_20260908.
+    # Timing: added after the split-feasibility stage and after the frozen
+    # preparation code rejected the temporal split's class balance, and before
+    # any model was fitted or any attribution computed under a study 1 policy.
+    # Observed information: realised per-class partition fractions only
+    # (BENIGN 0.046 and ATTACK 0.256 of the test partition under
+    # global_temporal), no predictive or attribution result.
+    # Reason: the frozen pipeline requires every class to keep its 70/15/15
+    # row share within 0.03 in every partition.  A time-ordered split cannot
+    # satisfy that: the CICIDS2017 capture week is attack-heavy at the end
+    # (Friday carries DDoS, PortScan and Bot), so ordering by capture time
+    # necessarily shifts the class prior.  Enforcing proportional balance would
+    # reintroduce exactly the mixing the policy exists to remove.  The bound is
+    # therefore relaxed for study 1 only, and the realised per-class fractions
+    # are reported as part of the result rather than constrained away.  The
+    # per_class_temporal policy is the balanced counterpart and is run
+    # alongside, so both readings stay visible.
+    max_absolute_split_fraction_deviation: 0.30
+    minimum_rows_per_class_per_split: 4
+  preprocessing_reuses_baseline_recipe: true
+  representation_guard_reuses_baseline_recipe: true
+  model_selection:
+    reuse_baseline_selected_architecture: true
+    reason: >-
+      Re-running the four-candidate validation-only selection under each policy
+      would confound a split effect with an architecture effect and quadruple
+      the compute.  The architecture and hyperparameters selected on the
+      baseline validation partition are held fixed, and the threshold is
+      re-fitted on the new validation partition under the baseline rule
+      (minimum FNR subject to FPR <= 0.05).  This is a declared deviation from
+      the baseline pipeline and makes the study a split stress test, not a new
+      selection round.
+  audit:
+    panel:
+      central_eligibility: correct_for_both_models_at_the_same_seed
+      target: true_class
+      sampling_seed: 20260908
+      maximum_per_true_class_per_seed: 128
+    probes: [gradient_x_input, integrated_gradients, occlusion]
+    probe_note: >-
+      LIME and KernelSHAP are excluded from study 1: at the baseline budget
+      (32,000 perturbation samples x 50 runs; 102,400 coalitions) they cost
+      about four orders of magnitude more per flow than the deterministic
+      probes and would dominate the whole extension programme.  Study 1's
+      contrast is therefore restricted to the three deterministic probes, and
+      the stochastic probes are recorded as pending.
+    dimensions: [repeatability, cross_model_equivalence, functional_faithfulness]
+    functional_evaluators: [training_median, target_class_median]
+    functional_fractions: [0.05, 0.10, 0.20, 0.30, 0.50]
+    functional_random_repetitions: 50
+    functional_panel: stochastic_subset
+    stochastic_subset_per_true_class_per_seed: 8
+
+# ===========================================================================
+# Study 2 - dependency-preserving and group-wise perturbations
+# ===========================================================================
+study2_dependency_perturbations:
+  enabled: true
+  question: >-
+    Is the baseline's functional-faithfulness verdict an artefact of replacing
+    top-ranked coordinates by a marginal constant (the training or target-class
+    median), which pushes the intervened row off the data manifold and breaks
+    the dependence between features?
+  baseline_contrast: >-
+    Baseline evaluators are training_median and target_class_median, both
+    coordinate-wise constants.  The operators below either preserve the joint
+    distribution of the replaced coordinates, condition the replacement on the
+    retained coordinates, or move whole dependent feature groups at once.
+  panel: baseline_central_stochastic_subset
+  reuses_baseline_attributions: true
+  methods: [gradient_x_input, integrated_gradients, occlusion, lime, shap]
+  feature_fractions: [0.05, 0.10, 0.20, 0.30, 0.50]
+  random_feature_repetitions: 50
+  # Two operators are much more expensive per evaluation than the rest: the
+  # Gaussian conditional draw needs an eigendecomposition of the conditional
+  # covariance for every distinct selected set, and the nearest-neighbour donor
+  # needs a distance search over the donor pool.  Both use fewer frozen random
+  # draws, and their Monte Carlo standard error is reported alongside the
+  # estimate so the loss of precision is visible rather than hidden.
+  operator_random_repetitions:
+    conditional_gaussian_draw: 10
+    nearest_neighbour_donor: 10
+  nearest_neighbour_donor_pool_max_rows: 5000
+  primary_random_control: per_flow_per_fraction_displacement_bin_matched_subset
+  sensitivity_random_control: uniform_coordinates
+  displacement_bins: 5
+  primary_estimand: attribution_minus_random_aopc
+  donor_pool_max_rows: 50000
+  donor_pool_seed: 20260908
+  operators:
+    - operator_id: training_median
+      family: baseline_marginal_constant
+      description: Baseline evaluator; recomputed here for a like-for-like contrast.
+    - operator_id: target_class_median
+      family: baseline_marginal_constant
+      description: Baseline evaluator; recomputed here for a like-for-like contrast.
+    - operator_id: joint_donor
+      family: dependency_preserving
+      description: >-
+        The selected coordinates are copied, as one block, from a single
+        training row drawn uniformly from the donor pool.  Marginals and the
+        joint dependence inside the replaced block are exactly those of the
+        training partition; only the coupling between replaced and retained
+        coordinates is broken.
+    - operator_id: target_class_donor
+      family: dependency_preserving_conditional_on_class
+      description: >-
+        As joint_donor, but the donor row is drawn from training rows whose
+        label equals the explained target class.
+    - operator_id: conditional_gaussian_mean
+      family: conditional_on_retained_coordinates
+      description: >-
+        Gaussian conditional expectation E[x_S | x_R] under a training-fitted
+        mean and covariance (S = selected, R = retained), with a ridge added to
+        the covariance for numerical stability.  Preserves the linear
+        dependence between replaced and retained coordinates.
+    - operator_id: conditional_gaussian_draw
+      family: conditional_on_retained_coordinates
+      description: >-
+        As conditional_gaussian_mean, plus one draw from the conditional
+        covariance, so the replacement keeps conditional variance instead of
+        collapsing to a conditional mean.
+    - operator_id: nearest_neighbour_donor
+      family: nonparametric_conditional
+      description: >-
+        The donor is the training row closest to the explained flow in the
+        retained coordinates only (standardised Euclidean distance over R),
+        which is a nonparametric draw from x_S | x_R.
+    - operator_id: correlation_group_median
+      family: group_wise
+      description: >-
+        Coordinates are first partitioned into correlation groups; selecting a
+        coordinate selects its whole group, and every coordinate of a selected
+        group is replaced by the training median.  Isolates whether the
+        baseline effect depends on leaving correlated partners of a top feature
+        untouched.
+    - operator_id: correlation_group_joint_donor
+      family: group_wise_dependency_preserving
+      description: >-
+        As correlation_group_median, with the group's coordinates copied as one
+        block from a single training donor row.
+  covariance_ridge: 1.0e-6
+  covariance_max_rows: 100000
+  group_definition:
+    method: absolute_spearman_average_linkage_complete_partition
+    correlation_max_rows: 20000
+    distance_threshold: 0.30
+    maximum_group_size_fraction: 0.25
+    fallback: train_identical_feature_groups
+  group_random_control: >-
+    matched on the number of selected groups and the same per-flow
+    displacement-rank bins; unequal group sizes can prevent exact matching of
+    the replaced-coordinate count, so both counts and their residual difference
+    are reported
+  gate_sensitivity: per_flow_gap_minus_1.96_monte_carlo_standard_errors
+
+# ===========================================================================
+# Study 3 - seed disagreement versus architecture disagreement
+# ===========================================================================
+study3_seed_vs_architecture:
+  enabled: true
+  question: >-
+    Is the MLP-versus-CNN disagreement reported by the baseline larger than the
+    disagreement between two independently seeded fits of the same
+    architecture?  Without that comparison, cross-model disagreement cannot be
+    attributed to architecture rather than to training stochasticity.
+  baseline_contrast: >-
+    The baseline compares MLP with CNN at the same seed on a panel that is
+    resampled per seed, so its five per-seed panels are almost disjoint and it
+    carries no within-architecture cross-seed contrast at all.
+  requires_new_panel: true
+  panel:
+    panel_id: shared_cross_seed_panel
+    eligibility: correct_for_both_models_at_every_seed
+    target: true_class
+    reference: training_median
+    selection_reads_attributions: false
+    sampling_seed: 20260908
+    maximum_per_true_class: 128
+    stochastic_subset_per_true_class: 8
+    minimum_class_support_for_class_specific_inference: 20
+  probes:
+    deterministic: [gradient_x_input, integrated_gradients, occlusion]
+    stochastic: [lime, shap]
+    stochastic_status: >-
+      Run on the smaller stochastic subset with one probe run per condition:
+      study 3 compares two attribution vectors and needs no repeated-run
+      estimand, so a single run per (model, seed) is sufficient.  KernelSHAP at
+      the baseline budget of 102,400 coalitions costs about 16 s per flow and
+      is executed last; if it does not complete it is reported as pending.
+  contrasts:
+    - contrast_id: within_architecture_cross_seed
+      pairs: all unordered seed pairs within each architecture
+    - contrast_id: cross_architecture_same_seed
+      pairs: MLP versus CNN at the same seed
+      role: replicates the baseline estimand on the shared panel
+    - contrast_id: cross_architecture_cross_seed
+      pairs: MLP versus CNN at different seeds
+      role: upper bound combining both sources of variation
+  estimand: >-
+    Per-flow attribution similarity for each contrast, averaged with equal
+    weight per compared pair, with a flow-cluster bootstrap.
+  uncertainty:
+    resampling_unit: source_flow
+    equal_weight_per_pair: true
+    bootstrap_resamples: 5000
+  decomposition: >-
+    architecture_excess = cross_architecture_same_seed minus
+    within_architecture_cross_seed, reported per task, probe and metric with a
+    paired flow-cluster bootstrap interval.
+
+# ===========================================================================
+# Study 4 - the deferred outcome panel (correct versus FP versus FN)
+# ===========================================================================
+study4_outcome_reliability:
+  enabled: true
+  question: >-
+    On the 18,952-flow outcome-stratified panel that the baseline selected,
+    froze and then deferred, is explanation reliability the same for correct
+    decisions as for false positives and false negatives, within class and
+    within confidence stratum?
+  baseline_contrast: >-
+    The baseline computed attributions only on the 7,348-flow central panel of
+    doubly-correct decisions, and its correct_vs_error section is present but
+    disabled (`enabled: false`, status deferred_before_attribution_generation).
+    Its matching machinery is reused here unchanged.
+  panel: baseline_outcome_panel
+  panel_rows: 18952
+  probes: [gradient_x_input, integrated_gradients, occlusion]
+  probe_note: >-
+    Exactly the three methods the baseline pre-registered for the deferred
+    correct-versus-error contrast.  LIME (0.44 s per flow per run, 50 runs) and
+    KernelSHAP (16 s per flow) would need about 116 and 84 hours respectively
+    on this panel and are recorded as pending, not as null results.
+  target: predicted_class_of_the_audited_model
+  dimensions:
+    repeatability:
+      roles:
+        - integrated_gradients_64_vs_128_steps
+        - integrated_gradients_32_vs_128_steps
+        - occlusion_fixed_rule_repeat
+      note: >-
+        Gradient x Input has no recomputation role, exactly as in the baseline.
+    cross_model_equivalence:
+      pairs: MLP versus CNN at the same seed
+      note: >-
+        Evaluated only on flows both architectures place in their own outcome
+        panel with the same explained target, so the compared account answers
+        the same question for both models.
+    functional_faithfulness:
+      evaluators: [training_median, target_class_median]
+      fractions: [0.05, 0.10, 0.20, 0.30, 0.50]
+      random_feature_repetitions: 50
+      signed_intervention:
+        status: secondary_descriptive_reduced
+        strengths: [1.0]
+        reason: >-
+          The baseline sweeps four intervention strengths as a descriptive
+          secondary check on a 485-flow subset.  On a panel 39 times larger the
+          sweep would dominate study 4's cost for evidence that carries no
+          gate, so only the full-strength operator is run and the result stays
+          descriptive.
+    reference_sensitivity:
+      variants: [target_class_median, zero_scaled]
+      methods: [integrated_gradients, occlusion]
+  strata:
+    outcome_status: [correct, error]
+    error_type:
+      binary: [true_positive, true_negative, false_positive, false_negative]
+      multiclass:
+        - correct
+        - benign_predicted_as_attack
+        - attack_predicted_as_benign
+        - attack_predicted_as_other_attack
+    by_true_class: true
+    confidence:
+      definition: probability_of_the_class_selected_by_the_decision_rule
+      binning: within_task_model_seed_quantile
+      bins: 3
+      labels: [low, medium, high]
+    margin:
+      definition: distance_from_the_decision_rule_boundary
+      binning: within_task_model_seed_quantile
+      bins: 3
+      labels: [low, medium, high]
+  matched_contrast:
+    reuse_baseline_matching: true
+    unit: true_attack_event_decision
+    excluded_true_classes: [BENIGN]
+    matching_variables: [confidence, model_margin]
+    assignment: maximum_cardinality_then_minimum_distance_without_replacement
+    primary_caliper_standard_deviations: 0.35
+    sensitivity_calipers_standard_deviations: [0.20, 0.50]
+    no_causal_interpretation: true
+  interpretation: >-
+    This is a diagnostic contrast on a frozen panel of controlled composition.
+    It does not estimate error rates or explanation-reliability rates on
+    deployment traffic.
+
+# ===========================================================================
+# Study 5 - LIME convergence and measurement-choice sensitivity
+# ===========================================================================
+study5_lime_and_thresholds:
+  enabled: true
+  question: >-
+    How much of the reported reliability picture is a property of the
+    explanation methods and how much of the measurement choices - LIME's
+    sampling budget, kernel width and ridge penalty, the top-k cut, the
+    identification tolerances, and the 95% coverage rule that decides which
+    cells are evaluable at all?
+  baseline_contrast: >-
+    The baseline fixes one value for each of these choices (top-10, an account
+    mass floor of 1e-12, a rank-tie tolerance of 1e-8, a 95% identification
+    coverage rule, LIME at 32,000 samples with library-default kernel width and
+    ridge penalty) and reports only the two-point budget contrast between its
+    original and amended sampling budgets.  It therefore cannot say which of
+    its 3,540 cell verdicts, and in particular which of its 183 non-evaluable
+    cross-probe cells, are properties of the explanations rather than of those
+    settings.
+  parts:
+    lime_convergence:
+      enabled: true
+      panel: baseline_central_stochastic_subset
+      panel_cap_per_task_model_seed: 4
+      panel_selection_seed: 20260908
+      tasks: [cicids2017_binary, cicids2017_multiclass, ton_iot_binary]
+      models: [mlp, cnn]
+      seeds: [42, 43]
+      seed_note: >-
+        Two fitted seeds rather than five: the convergence curve is a property
+        of the estimator's sampling budget, and the budget sweep already costs
+        the equivalent of about 1.9 million perturbation samples per explained
+        flow.
+      num_samples: [250, 500, 1000, 2000, 4000, 8000, 16000, 32000]
+      independent_runs: 8
+      reference_budget: 32000
+      estimands:
+        - mean_pairwise_spearman_between_independent_runs
+        - mean_pairwise_jaccard_10_between_independent_runs
+        - similarity_of_the_run_mean_to_the_reference_budget_run_mean
+        - coefficient_of_variation_of_the_top_1_attribution
+      baseline_budget_marker: 32000
+    lime_kernel_regularization_ablation:
+      enabled: true
+      panel: same_as_lime_convergence
+      num_samples: 4000
+      independent_runs: 8
+      kernel_width_multipliers: [0.25, 0.5, 1.0, 2.0, 4.0]
+      kernel_width_default_rule: sqrt_n_features_times_0.75
+      ridge_alpha: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0]
+      ridge_alpha_default: 1.0
+      feature_selection: none
+      discretize_continuous: false
+      estimands:
+        - mean_pairwise_spearman_between_independent_runs
+        - mean_pairwise_jaccard_10_between_independent_runs
+        - local_surrogate_r2
+        - similarity_to_the_default_configuration
+    threshold_and_topk_sensitivity:
+      enabled: true
+      reuses_baseline_attributions: true
+      inventories: [repeatability, cross_model, cross_probe]
+      top_k: [3, 5, 10, 20, 40]
+      top_k_default: 10
+      minimum_identifiable_fraction: [0.90, 0.95, 0.99]
+      minimum_identifiable_fraction_default: 0.95
+      minimum_account_l1: [1.0e-12, 1.0e-10, 1.0e-8]
+      minimum_account_l1_default: 1.0e-12
+      rank_tie_relative_tolerance: [1.0e-8, 1.0e-6, 1.0e-4]
+      rank_tie_relative_tolerance_default: 1.0e-8
+      sweep_design: one_axis_at_a_time_around_the_baseline_defaults
+      bootstrap_resamples: 5000
+      bootstrap_implementation: >-
+        A vectorised re-implementation of the baseline's crossed source/seed
+        equal-seed multinomial bootstrap.  It is validated against the frozen
+        implementation on sampled cells; agreement is required within Monte
+        Carlo tolerance and is reported.
+      bootstrap_agreement_tolerance: 0.01
+    non_evaluable_diagnostics:
+      enabled: true
+      reuses_baseline_attributions: true
+      reports:
+        - per_cell_identification_coverage_and_shortfall
+        - share_of_rows_failing_each_identification_criterion
+        - null_account_and_rank_tie_composition
+        - whether_the_shortfall_is_one_sided_left_or_right_probe
+        - top_k_boundary_gap_distribution
+        - which_non_evaluable_cells_become_evaluable_under_each_relaxation

@@ -1,0 +1,60 @@
+\section{Discussion and Limitations}
+
+The audit supports a qualified use of post-hoc explanations: they can provide
+reproducible accounts and measurable evidence about frozen models, provided the
+account's target, identifiable support and evaluation rule are specified.
+Reproducibility does not imply that an intervention will outperform a matched
+random subset. Conversely, an intervention response describes the model under
+that replacement mechanism, not a feature's causal role in an attack.
+The practical reporting unit should therefore retain the method, target,
+reference, operator, panel and uncertainty together. Collapsing these into a
+trust score would hide distinctions that the experiments expose.
+
+\emph{Computational scope.} A cached two-input CICIDS/MLP microbenchmark on an
+Apple M1 Pro CPU (10 cores, 32 GiB), excluding the first repetition and
+preparation, measures one explanation of one input per observation, not a
+joint two-input batch. Table~\ref{tab:binary-cost} reports the median, range
+and measurement count.
+\begin{table}[t]
+\centering\small
+\caption{Single-input CPU timings (ms); first repetition excluded.
+Two fixed inputs supply the $n$ individual measurements per method.}
+\label{tab:binary-cost}
+\input{assets/binary_cost}
+\end{table}
+These are small-sample descriptive timings: gradient/Occlusion batches were
+one, and LIME/SHAP prediction batches 4,096. SHAP used one physical background
+row, unlike the main audit's 100 copies. One explanation is not LIME's
+50-run recomputation experiment or the full intervention audit. Historical
+batch-stage costs include preparation and are not pooled with these timings.
+Full-audit critical-path time and operational per-alert latency remain unknown.
+
+\emph{Limits.} One fixed split and five fitted seeds do not quantify new-site,
+temporal or session-level generalisation. Exact/rounded overlap safeguards
+do not establish complete independence; source identity is also not a
+session cluster. Class caps alter prevalence, and the correct-by-both panel
+conditions RQ1/RQ2 on successful decisions. The processed ToN-IoT extract lacks
+timestamps and endpoint addresses needed for stronger split policies.
+Feature-space replacements need not describe feasible traffic. The CNN's
+feature order and selected configurations limit architectural interpretation.
+
+The RQ structure and operator/outcome extensions reorganise existing
+experiments; sampling budgets were increased after inspecting earlier
+results. They are not retroactively preregistered hypotheses. SHAP's two-run
+support and unknown historical regularisation/environment further limit
+reproducibility claims. The explicitly configured SHAP 0.51.0 microbenchmark
+does not recover the historical runs' settings. Marginal intervals and
+exploratory example selection do not establish a universal method winner.
+The study measures neither analyst understanding/trust nor detection gains
+from using explanations, and proposes no operational safety threshold.
+
+\section{Conclusion}
+
+For the evaluated binary tasks and fitted pipelines, post-hoc attributions
+provide condition-specific evidence about model behaviour, but do not
+independently validate the correctness or safety of IDS decisions.
+Identifiable accounts can be highly reproducible while
+functional conclusions change with the replacement operator. Outcome diagnostics
+expose further dependence on the model, score and available support. An
+auditable explanation must therefore state these conditions; explaining a
+decision is not equivalent to validating an IDS.
