@@ -15,10 +15,12 @@ The direct row locators source_file, source_row, and sample_order and the
 raw/tensor fingerprints were removed. All 12,774 distinct flow_id values were
 replaced by random 128-bit IDs; the mapping was discarded. Groupings are
 preserved and the record-based rebuild checks numerical results. This reduces
-direct linkage but is not a de-identification guarantee. The per-flow records
-remain conditional on written data-rights and linkability clearance; see
-docs/data-access.md. The proposed public snapshot must use an unrelated root
-commit, with no inherited tags or history.
+direct linkage but is not a de-identification guarantee. The current package
+contains derived research results, not benchmark source rows; dataset terms
+and required attribution are documented in docs/data-access.md. Linkability
+review remains a separate release condition. The private remote uses an
+unrelated root commit; GitHub still resolves the old commit by SHA, so the
+repository remains private pending history assessment.
 
 The proposal excludes raw data, fitted model files, full attribution arrays,
 local machine/environment dumps, work logs, superseded manuscripts, unrelated

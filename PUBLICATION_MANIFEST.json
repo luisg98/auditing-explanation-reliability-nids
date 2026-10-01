@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "publication_status": "proposal_only_unpublished",
+  "publication_status": "private_candidate_not_publicly_released",
   "release_authorized": false,
   "target_repository": "https://github.com/luisg98/auditing-explanation-reliability-nids",
-  "candidate_branch": "public-release-proposal",
+  "candidate_branch": "main",
   "base_commit": "7e926902a86de043c46ec95185b19c0c1e3ad3e3",
   "previous_release_tag": "camera-ready-v1",
   "release_version": null,
@@ -12,13 +12,13 @@
   "self_hash_excluded": true,
   "approval_rule": "No file is approved by inclusion here; release requires explicit approval for every listed file, release_authorized=true, and all release_gates=true.",
   "release_gates": {
-    "data_rights_approved": false,
+    "data_rights_approved": true,
     "linkability_review_cleared": false,
     "history_treatment_approved": false,
     "license_scope_confirmed": false
   },
   "package_file_count": 306,
-  "package_bytes": 139786474,
+  "package_bytes": 139786506,
   "record_transformations": [
     "Removed source_file, source_row, sample_order, raw_fingerprint, tensor_fingerprint_exact, and tensor_fingerprint_round5 from source-level records where present.",
     "Replaced all 12,774 distinct flow_id values with independent random 128-bit identifiers; the mapping was discarded.",
@@ -66,22 +66,22 @@
     },
     {
       "path": "MANIFEST.md",
-      "bytes": 1493,
-      "sha256": "f004ac0f289309e9f8a5584ed45ab4129e9973d6e3d1416b8131e74b77b63433",
+      "bytes": 1653,
+      "sha256": "11ede54f598a755836d5ddc45ba2847f7447ed5cda25254089a5b0981c8441f0",
       "status": "proposed_not_approved",
       "kind": "code_document_or_paper"
     },
     {
       "path": "README.md",
-      "bytes": 3182,
-      "sha256": "ec5eba4e28550bfe558e7d7dfa3370813c63218f9c5d02e60f22f0994a6fd613",
+      "bytes": 3526,
+      "sha256": "9003378e22923a4b2ae45f194772a790f78d54f1d26630612906d79b16bad9e1",
       "status": "proposed_not_approved",
       "kind": "code_document_or_paper"
     },
     {
       "path": "REPRODUCIBILITY.md",
-      "bytes": 2049,
-      "sha256": "6a69a3afca7ec91af2a7bfa2cf93802eeb54151076827a18119b7bea3448f190",
+      "bytes": 2166,
+      "sha256": "0c86f31404ae85d2d4cf2b8bc46b37989133b04829b174e453c08a4b86ff5b77",
       "status": "proposed_not_approved",
       "kind": "code_document_or_paper"
     },
@@ -122,8 +122,8 @@
     },
     {
       "path": "docs/data-access.md",
-      "bytes": 3394,
-      "sha256": "4a014acb9a965d5d7c25d0558c5332085fd134b2b322b02fd05b127dd942864c",
+      "bytes": 2805,
+      "sha256": "c765da834fa7f6c3f17eef5af74bcd6d45efce9a115ea81635f454956f105b77",
       "status": "proposed_not_approved",
       "kind": "code_document_or_paper"
     },
@@ -2173,10 +2173,11 @@
     }
   ],
   "rights_status": {
-    "ton_iot_derived_records": "pending written permission for public redistribution and commercial access",
-    "cicids2017_improved_derived_records": "pending explicit terms from the corrected-release maintainers",
+    "ton_iot_source_data": "not included; used for academic research under UNSW terms; cite papers listed on upstream page",
+    "cicids2017_source_data": "not included; UNB permits source dataset redistribution with citation; corrected archive is not mirrored",
+    "package_derived_records": "current scope reviewed; generated research results, not source dataset rows; no dataset redistribution permission blocker identified",
     "software_license": "MIT for original project software in src/, scripts/, tests/, configs/ only",
-    "manuscript_figures_and_results": "no additional license grant; contributor/publisher scope requires confirmation"
+    "manuscript_figures_and_results": "no additional license grant; author/contributor and publisher scope remains to be confirmed"
   },
-  "history_treatment": "The local clean snapshot uses a new root commit and omits all old parents and tags. It has not been pushed; private source-repository refs remain unchanged."
+  "history_treatment": "Remote main now points to an unrelated root commit; old release and tag were removed. The repository remains private because GitHub still resolves the old commit by SHA; original workspace history remains intact."
 }

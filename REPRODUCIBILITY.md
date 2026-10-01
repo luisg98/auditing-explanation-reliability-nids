@@ -32,10 +32,12 @@ fresh experimental rerun.
 The public-release verifier checks the exact manifest, file sizes and SHA-256
 digests, unexpected files, high-confidence secret patterns, personal absolute
 paths, and nested compressed archives. It is an additional screening layer;
-manual content and data-rights review remains required.
+manual content and linkability review remains required. The current data-rights
+review covers only the derived-results package described in
+`docs/data-access.md`.
 
-This proposal has no release tag or DOI. Before publication, approve each
-conditional data record and resolve all release_gates in
-PUBLICATION_MANIFEST.json. Then create the immutable repository version and
+This candidate has no public release tag or DOI. Before publication, approve
+each manifest file and resolve all remaining release gates in
+`PUBLICATION_MANIFEST.json`. Then create the immutable repository version and
 update CITATION.cff and the manuscript's artifact reference to that actual
 version. `--release` refuses to proceed while any gate is false.

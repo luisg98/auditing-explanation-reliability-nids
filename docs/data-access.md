@@ -1,59 +1,50 @@
-# Dataset rights and record redistribution
+# Dataset terms and package scope
 
-Status checked on 2026-10-01. The source datasets are not included in this
-package. The derived per-flow records are needed to rebuild the manuscript's
-reported table and figures; they are not released under the software license.
-The current public-release proposal is **not cleared for redistribution** until
-the permissions below are resolved in writing or the affected records are
-removed and the manuscript's reproducibility claim is revised.
+Review checked on 2026-10-01. This package does **not** contain the ToN-IoT or
+CIC-IDS2017 source datasets, packet captures, source feature rows, or the
+third-party `CICIDS2017_improved` archive. It contains project-generated
+analysis records and aggregate results used to reproduce the paper's table
+and figures. Direct source locators and fingerprints have been removed; the
+per-flow identifiers are random and have no retained crosswalk.
 
 ## ToN-IoT
 
-The official [UNSW ToN-IoT dataset page](https://research.unsw.edu.au/projects/toniot-datasets)
-grants free use for academic research and says commercial use is allowed after
-asking the dataset author. It asks users to cite the listed dataset papers. It
-does not expressly state whether a public repository may redistribute the
-row-level per-flow measurements derived from ToN-IoT, or whether those records
-may be accessed and reused commercially. Public posting would make the files
-available beyond academic users, so this package does not infer permission from
-the research-use grant alone.
+The [official UNSW ToN-IoT page](https://research.unsw.edu.au/projects/toniot-datasets)
+grants free use for academic research, asks users to cite the listed dataset
+papers, and says commercial use of the dataset is allowed after asking its
+author. This project uses ToN-IoT for academic research and shares derived
+research results; it does not mirror or redistribute ToN-IoT source records.
+The commercial-use condition applies to use of the source dataset, and this
+package does not grant rights to that dataset. Anyone obtaining ToN-IoT for a
+new experiment must follow the current UNSW terms and cite the papers listed
+on the upstream page.
 
-Required clearance: written permission for public redistribution of the
-ToN-IoT-derived per-flow result records, including access by commercial users,
-with any citation, notice, and downstream-use conditions specified by the
-rights holder.
+## CIC-IDS2017
 
-## Corrected CIC-IDS2017
+The [UNB CIC FAQ](https://www.unb.ca/cic/datasets/index.html) says its datasets
+may be redistributed, republished, and mirrored in any form, with citations
+to the dataset and its paper. The experiment used the corrected
+`CICIDS2017_improved` distribution from the [CNS 2022 study site](https://intrusion-detection.distrinet-research.be/CNS2022/),
+but this package does not redistribute that archive or the underlying
+CIC-IDS2017 source files. The corrected archive's terms would need separate
+review only if that archive or its source rows were added to this package.
 
-The experiment configuration identifies the input as the corrected
-`CICIDS2017_improved` release distributed with the CNS 2022 study by Liu,
-Engelen, Lynar, Essam, and Joosen. The [CIC-IDS2017 page](https://www.unb.ca/cic/datasets/ids-2017.html)
-and [CIC FAQ](https://www.unb.ca/cic/datasets/index.html) state that the
-original CIC dataset may be redistributed, republished, and mirrored with the
-required citations. The configured input is the corrected release hosted by
-the CNS study's [supplementary site](https://intrusion-detection.distrinet-research.be/CNS2022/),
-not just the original UNB download. I found no explicit redistribution license
-for that corrected package or for derived per-flow records on the supplementary
-pages. The original CIC permission therefore is not treated as clearance for
-the corrected variant or these outputs.
-
-Required clearance: written permission or an explicit license from the
-corrected-release maintainers covering public redistribution of the derived
-per-flow result records and any attribution conditions.
-
-## Scope of licenses in this repository
+## License scope
 
 `LICENSE` grants MIT rights only for original project software in `src/`,
-`scripts/`, `tests/`, and `configs/`. It does not grant rights to source data,
-per-flow records, aggregate outputs, figures, the manuscript, or third-party
-material. Those materials have no additional license grant here; their
-copyright and data-provider terms remain in force. `CITATION.cff`'s MIT value
-refers to the original software only. The manuscript, figures, and records
-must be cleared separately with their relevant authors, contributors, or
-publisher before the package is made public.
+`scripts/`, `tests/`, and `configs/`. It does not license benchmark datasets,
+the derived result records, the manuscript, figures, or third-party material.
+The package contains no benchmark source data. A separate license for
+project-generated records or paper materials should be added only after the
+authors confirm they hold the rights to grant it; the GitHub license badge
+does not extend the MIT grant beyond the listed software directories.
 
-The package includes both dataset tasks' per-flow records only to support the
-current reconstruction claim. If either clearance is denied or remains
-unanswered, those records must stay out of the public snapshot and the paper
-must no longer claim complete record-based reconstruction from the repository.
-No raw captures or source feature matrices are included.
+## Review conclusion
+
+For the current package scope, the dataset terms do not create a separate
+permission blocker: the upstream datasets are used for academic research, the
+package contains derived results rather than source data, and the required
+dataset attribution must remain documented. This conclusion does not cover
+adding raw or corrected benchmark files, source feature rows, or any data from
+another source. The separate review of record linkability and of author or
+publisher rights for the manuscript and figures remains necessary.

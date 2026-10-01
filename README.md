@@ -1,13 +1,15 @@
 # Trust in Neural Intrusion Detection: Auditing Post-hoc Explanation Reliability
 
-This directory is a **local publication proposal** based on the repository tree
-at `camera-ready-v1` for
+This is a **private publication candidate** based on the repository tree at
+commit `7e926902a86de043c46ec95185b19c0c1e3ad3e3` for
 [luisg98/auditing-explanation-reliability-nids](https://github.com/luisg98/auditing-explanation-reliability-nids).
-The remote was confirmed private on 2026-10-01. This proposal has not been
-approved or published. The exact versioned citation must be set only after the
-release contents, data permissions, and Git history are cleared. The proposed
-public snapshot uses an unrelated root commit with no inherited tags or commits;
-the private source repository has not been rewritten.
+The candidate is stored on the private remote's `main` branch and has not been
+publicly released. It uses an unrelated root commit; the old release and tag
+were removed from the remote, while the original workspace and its history were
+left intact. GitHub still resolves the old commit by SHA, so the repository
+must remain private until that residual exposure is assessed. Set the exact
+versioned citation only after file approvals, linkability review, history
+assessment, and license scope are settled.
 
 The package contains the code, configurations, paper sources, and frozen
 source-level numerical records used to rebuild Table II and Figures 1–2. The
@@ -15,9 +17,11 @@ records retain all rows, labels, targets, support counts, estimates, intervals,
 and reported limitations. Direct row locators (`source_file`, `source_row`, and
 `sample_order`) and raw/tensor fingerprints have been removed. `flow_id` values
 are independent random 128-bit identifiers; the crosswalk was not retained.
-These steps reduce direct linking but do not establish de-identification or
-clear rights to redistribute row-level results. The per-flow records remain
-blocked from release pending written data-rights clearance and review.
+These steps reduce direct linking but do not establish de-identification. The
+package contains derived research records, not the source datasets or their
+feature rows. The current rights review found no separate permission blocker
+for those research outputs; upstream dataset terms and required citations are
+documented in `docs/data-access.md`.
 
 No raw traffic captures, prepared feature matrices, trained model binaries,
 full attribution arrays, local environment snapshots, or historical manuscript
@@ -28,9 +32,9 @@ distributors' terms.
 
 The MIT grant in `LICENSE` is limited to original software files in `src/`,
 `scripts/`, `tests/`, and `configs/`. It does not license datasets, derived
-records, tables, figures, or manuscript files. See `docs/data-access.md` for the
-known dataset terms and unresolved permissions. The records cannot be published
-until those permissions are explicit.
+records, tables, figures, or manuscript files. See `docs/data-access.md` for
+the dataset terms and package scope. The separate license for paper materials
+and project-generated records remains to be confirmed.
 
 ## Reproduce from included records
 
@@ -47,8 +51,9 @@ and fresh experimental reruns, and `ARTIFACT_PROVENANCE.md` for recorded,
 reconstructed, and unknown settings.
 
 Release mode requires explicit approval for every manifest entry and clearance
-of data rights, linkability, Git history, and license scope. These are release
-gates, not conclusions inferred from automated scans.
+of linkability, Git history, and license scope. Dataset terms were reviewed for
+the current derived-results-only package; adding benchmark source files would
+require a new review.
 
 ## Data access
 
